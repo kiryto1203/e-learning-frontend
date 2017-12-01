@@ -1,5 +1,5 @@
 .btn-start{
-  background-color: #009688;
+  background-color: rgb(0,175,173);
   padding: 10px 20px;
   border-radius: 3px;
   font-size: 20px;
@@ -9,7 +9,7 @@
 .rules{
   border: #009688;
   border-radius: 5px;
-  background-color:#e2e0de;
+  background-color:rgb(242,244,247);
   padding: 10px;
   margin-bottom: 20px;
   text-align:left;

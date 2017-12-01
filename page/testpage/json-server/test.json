@@ -2,7 +2,7 @@
     "lession_id": [1],
     "questions": [
       {
-        "question_code": 1,
+        "question_code": "QI01",
         "content": "The baby boy saw  ___ in the mirror and started to cry.",
         "answers": [
                   {
@@ -19,10 +19,10 @@
                   }
                 ],
         "type": 1,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 2,
+        "question_code": "QI02",
         "content": "A lot of trains ___ late today due to the heavy storms.",
         "answers": [
                     {
@@ -39,10 +39,10 @@
                     }
                   ],
         "type": 1,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 3,
+        "question_code": "QI03",
         "content": "___ was a strong wind last night.",
         "answers": [
                     {
@@ -59,10 +59,10 @@
                     }
                   ],
         "type": 1,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 4,
+        "question_code": "QI04",
         "content": "Firstly, I want to congratulate you all. Secondly, I would like to wish you good luck and ___ I hope you have enjoyed the course.",
         "answers": [
                     {
@@ -79,10 +79,10 @@
                     }
                    ],
         "type": 1,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 5,
+        "question_code": "QI05",
         "content": "You ___ clean your teeth twice a day to avoid having problems.",
         "answers": [
                     {
@@ -99,52 +99,52 @@
                     }
                    ],
         "type": 1,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 6,
+        "question_code": "QI06",
         "content": "Jack: I think it’s going to rain.\nJill: I ... , the clouds are clearing.\nJack: We’ll soon see.",
         "answers": [],
         "type": 2,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 7,
+        "question_code": "QI07",
         "content": "I really don’t like this meal. ___ money in the world wouldn’t get me to eat it.",
         "answers": [],
         "type": 2,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 8,
+        "question_code": "QI08",
         "content": "The Earth ___ rotates the Sun.",
         "answers": [],
         "type": 2,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 9,
+        "question_code": "QI09",
         "content": "She ___ (play) basketball once a week",
         "answers": [],
         "type": 2,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 10,
+        "question_code": "QI10",
         "content": "Tom ___ (work) every day.",
         "answers": [],
         "type": 2,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 11,
+        "question_code": "QI11",
         "content": "In the early twentieth century, an American woman named Emily Post wrote a book on etiquette. This book explained the proper behavior Americans should follow in many different social (1)______, from birthday parties to funerals. But in modern society, it is not simply to know the proper rules for behavior in your own country. It is necessary for people (2)______ work or travel abroad to understand the rules of etiquette in other cultures as well. Cultural (3)______ can be found in such simple processes as giving or receiving a gift. In Western cultures, a gift can be given to the receiver with relatively little ceremony. When a gift is offered, the receiver usually takes the gift and expresses his or her thanks. (4)______, in some Asian countries, the act of gift-giving may appear confusing to Westerners. In Chinese culture, both the giver and receiver understand that the receiver will typically refuse to take the gift several times before he or she finally accepts it. In addition, to (5)______ respect for the receiver, it is common in several Asian cultures to use both hands when offering a gift to another person.",
         "answers": [],
         "type": 3,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 12,
+        "question_code": "QI12",
         "content": "(1)",
         "answers": [
                     {
@@ -165,10 +165,10 @@
                     }
                    ],
         "type": 1,
-        "parent": 11
+        "parent": "QI11"
       },
       {
-        "question_code": 13,
+        "question_code": "QI13",
         "content": "(2)",
         "answers": [
                     {
@@ -188,11 +188,11 @@
                       "content": "whose"
                     }
                   ],
-        "type": 1,
-        "parent": 11
+        "type": 4,
+        "parent": "QI11"
       },
       {
-        "question_code": 14,
+        "question_code": "QI14",
         "content": "(3)",
         "answers": [
                       {
@@ -212,11 +212,11 @@
                         "content": "differ"
                       }
                     ],
-        "type": 1,
-        "parent": 11
+        "type": 4,
+        "parent": "QI11"
       },
       {
-        "question_code": 15,
+        "question_code": "QI15",
         "content": "(4)",
         "answers": [
                       {
@@ -236,11 +236,11 @@
                         "content": "Otherwise"
                       }
                     ],
-        "type": 1,
-        "parent": 0
+        "type": 4,
+        "parent": "QI11"
       },
       {
-        "question_code": 16,
+        "question_code": "QI16",
         "content": "(5)",
         "answers": [
                     {
@@ -260,50 +260,50 @@
                       "content": "take"
                     }
                   ],
-        "type": 1,
-        "parent": 11
+        "type": 4,
+        "parent": "QI11"
       },
       {
-        "question_code": 17,
+        "question_code": "QI17",
         "content": "Different cultures follow their own special customs when a child's baby teeth fall out. In Korea, for example, they have the custom of throwing lost teeth up on the roof of a house. According to tradition, a magpie will come and take the tooth. Later, the magpie will return with a new tooth for the child. In other Asian countries, such as Japan and Vietnam, children follow a similar tradition of throwing their lost teeth onto the roofs of houses. Birds aren't the only animals thought to take lost teeth. In Mexico and Spain, tradition says a mouse takes a lost tooth and leaves some money. However, in Mongolia, dogs are responsible for taking teeth away. Dogs are highly respected in Mongolian culture and are considered guardian angels of the people. Tradition says that the new tooth will grow good and strong if the baby tooth is fed to a guardian angel. Accordingly, parents in Mongolia will put their child's lost tooth in a piece of meat and feed it to a dog. The idea of giving lost teeth to an angel or fairy is also a tradition in the West. Many children in Western countries count on the Tooth Fairy to leave money or presents in exchange for a tooth. The exact origins of the Tooth Fairy are a mystery, although the story probably began in England or Ireland centuries ago. According to tradition, a child puts a lost tooth under his or her pillow before going to bed. In the wee hours, while the child is sleeping, the Tooth Fairy takes the tooth and leaves something else under the pillow. In France, the Tooth Fairy leaves a small gift. In the United States, however, the Tooth Fairy usually leaves money. These days, the rate is $1 to $5 per tooth, adding up to a lot of money from the Tooth Fairy!",
         "answers": [],
         "type": 3,
-        "parent": 0
+        "parent": ""
       },
       {
-        "question_code": 18,
+        "question_code": "QI18",
         "content": "What is the passage mainly about? ",
         "answers": [],
         "type": 2,
-        "parent": 17
+        "parent": "QI17"
       },
       {
-        "question_code": 19,
+        "question_code": "QI19",
         "content": "The word 'their' in paragraph 1 refers to ___",
         "answers": [],
         "type": 2,
-        "parent": 17
+        "parent": "QI17"
       },
       {
-        "question_code": 20,
+        "question_code": "QI20",
         "content": " According to the passage, where is a child's lost tooth thought to be taken away by a mouse?",
         "answers": [],
         "type": 2,
-        "parent": 17
+        "parent": "QI17"
       },
       {
-        "question_code": 21,
+        "question_code": "QI21",
         "content": "According to paragraph 2, parents in Mongolia feed their child's lost tooth to a dog because ___",
         "answers": [],
         "type": 2,
-        "parent": 17
+        "parent": "QI17"
       },
       {
-        "question_code": 22,
+        "question_code": "QI22",
         "content": "The word 'origins' in paragraph 3 is closest in meaning to ______.",
         "answers": [],
         "type": 2,
-        "parent": 17
+        "parent": "QI17"
       }
     ]
 }

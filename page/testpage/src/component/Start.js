@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import '../css/start.css';
-
-const buttonStart = {
-  color: '#fff'
-}
+import '../css/Start.css';
 
 export default class Start extends Component {
+
+  handleClick()
+  {
+    this.props.handleClick();
+  }
+
   render() {
     return (
       <div className="start">
@@ -19,7 +21,7 @@ export default class Start extends Component {
           <p>- Lorem ipsum</p>
           <p>- Lorem ipsum</p>
         </div>
-        <button className="btn-start" style={buttonStart}>Start</button>
+        <button className="btn-start" style={{color: "#fff" }} onClick={this.handleClick.bind(this)}>Start</button>
       </div>
     );
   }
