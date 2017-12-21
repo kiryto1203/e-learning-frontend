@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en"><!-- InstanceBegin template="/Templates/templateAdmin.dwt" codeOutsideHTMLIsLocked="false" --><head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><!-- InstanceBeginEditable name="TitlePage" -->User Manager<!-- InstanceEndEditable --> - E-Learning Admin</title>
+	<!-- Global stylesheets -->
+<!--	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">-->
+	<link href="/admin/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="/admin/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="/admin/assets/css/core.css" rel="stylesheet" type="text/css">
+	<link href="/admin/assets/css/components.css" rel="stylesheet" type="text/css">
+	<link href="/admin/assets/css/colors.css" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+	<!-- Core JS files -->
+	<script type="text/javascript" src="/admin/assets/js/plugins/pace.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/core/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/core/libraries/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/blockui.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/pnotify.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/core/app.js"></script>
+
+	<script type="text/javascript" src="/admin/assets/js/elearning/main.js"></script>
+	<!-- /core JS files -->
+	<!-- Theme JS files -->
+	<!-- InstanceBeginEditable name="ElearningJS" -->
+	<script type="text/javascript" src="assets/js/pages/add_user.js"></script>
+	<!-- InstanceEndEditable -->
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+	<!-- Main navbar -->
+	<div class="navbar navbar-default header-highlight">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/admin/index.html"><img src="/admin/assets/images/logo_light.png" alt=""></a>
+
+			<ul class="nav navbar-nav visible-xs-block">
+				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+				<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+			</ul>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav">
+				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+			</ul>
+
+			<div class="navbar-right">
+				<ul class="nav navbar-nav">
+					<li class="dropdown dropdown-user">
+						<a class="dropdown-toggle" data-toggle="dropdown">
+							<img class="img-user" src="/admin/assets/images/placeholder.jpg" alt="">
+							<span class="displayname-user">Victoria</span>
+							<i class="caret"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+							<li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+  </div>
+	<!-- /main navbar -->
+
+
+	<!-- Page container -->
+<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main sidebar -->
+			<div class="sidebar sidebar-main">
+				<div class="sidebar-content">
+
+					<!-- User menu -->
+					<div class="sidebar-user">
+						<div class="category-content">
+							<div class="media" id="sidebar-user">
+								<a href="#" class="media-left"><img src="/admin/assets/images/placeholder.jpg" class="img-circle img-sm img-user" alt=""></a>
+								<div class="media-body">
+									<span class="media-heading text-semibold displayname-user"></span>
+									<div class="text-size-mini text-muted role-user">
+										<i class="icon-pin text-size-small"></i> &nbsp;
+									</div>
+								</div>
+
+								<div class="media-right media-middle">
+									<ul class="icons-list">
+										<li>
+											<a href="#"><i class="icon-cog3"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /user menu -->
+
+
+					<!-- Main navigation -->
+					<div class="sidebar-category sidebar-category-visible">
+						<div class="category-content no-padding">
+							<ul class="navigation navigation-main navigation-accordion">
+
+								<!-- Main -->
+								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+								<li><a href="/admin/index.html"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+								<li>
+									<a href="#"><i class="icon-stack2"></i> <span>Questions</span></a>
+									<ul>
+										<li><a href="/admin/question.html">Questions</a></li>
+										<li><a href="/admin/add-question.html">New Question</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class="icon-copy"></i> <span>Layouts</span></a>
+									<ul>
+										<li><a href="file:///D|/Java/PJ4/layout_1/LTR/index.html" id="layout1">Layout 1</a></li>
+										<li><a href="/admin/index.html" id="layout2">Layout 2 <span class="label bg-warning-400">Current</span></a></li>
+										<li><a href="file:///D|/Java/PJ4/layout_3/LTR/index.html" id="layout3">Layout 3</a></li>
+										<li><a href="file:///D|/Java/PJ4/layout_4/LTR/index.html" id="layout4">Layout 4</a></li>
+										<li class="disabled"><a href="file:///D|/Java/PJ4/layout_5/LTR/index.html" id="layout5">Layout 5 <span class="label">Coming soon</span></a></li>
+									</ul>
+								</li>
+								
+								<!-- /page kits -->
+
+							</ul>
+						</div>
+					</div>
+					<!-- /main navigation -->
+
+				</div>
+			</div>
+			<!-- /main sidebar -->
+
+
+		  <!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Page header -->
+				<div class="page-header">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h4><i class="icon-arrow-left52 position-left"></i> 
+								<span class="text-semibold">
+								<!-- InstanceBeginEditable name="Item_Obj" -->
+User Manage
+							<!-- InstanceEndEditable -->
+								</span> - 
+								<!-- InstanceBeginEditable name="Object_Page" -->
+	Create User
+	<!-- InstanceEndEditable -->
+								</h4>
+						</div>
+					</div>
+
+					<div class="breadcrumb-line">
+						<ul class="breadcrumb">
+							<li><a href="/admin/index.html"><i class="icon-home2 position-left"></i> Home</a></li>
+							<li><a href="/admin/components_notifications_pnotify.html">
+							<!-- InstanceBeginEditable name="Item_Object_2" -->
+User Manage
+							<!-- InstanceEndEditable -->
+							</a>
+							</li>
+							<li class="active">
+							<!-- InstanceBeginEditable name="Object_Page_2" -->
+Create User
+							<!-- InstanceEndEditable -->
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /page header -->
+
+
+			  <!-- Content area -->
+				<div class="content">
+
+					<!-- Main Content -->
+					<div class="panel panel-flat">
+						<div class="panel-heading">
+							<h5 class="panel-title">
+							<legend class="text-bold">
+							<!-- InstanceBeginEditable name="Form" -->
+							Create User Form
+							<!-- InstanceEndEditable -->
+							</legend>
+							</h5>
+						</div>
+
+						<div class="panel-body">
+							<!-- InstanceBeginEditable name="Content" -->
+
+							<!-- InstanceEndEditable -->
+						</div>
+					</div>
+					<!-- /Main Content -->
+
+
+				  <!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2017. <a href="#last" id="last">E Learing</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">TeamFor</a>
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+</body>
+<!-- InstanceEnd --></html>
