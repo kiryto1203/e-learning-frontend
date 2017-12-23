@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><!-- InstanceBeginEditable name="TitlePage" -->User Manager<!-- InstanceEndEditable --> - E-Learning Admin</title>
+	<title><!-- InstanceBeginEditable name="TitlePage" --> Current User<!-- InstanceEndEditable --> - E-Learning Admin</title>
 	<!-- Global stylesheets -->
 <!--	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">-->
 	<link href="/admin/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -25,7 +25,8 @@
 	<!-- /core JS files -->
 	<!-- Theme JS files -->
 	<!-- InstanceBeginEditable name="ElearningJS" -->
-	<script type="text/javascript" src="assets/js/pages/add_user.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/bootstrap_select.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/pages/current-user.js"></script>
 	<!-- InstanceEndEditable -->
 	<!-- /theme JS files -->
 
@@ -150,12 +151,12 @@
 							<h4><i class="icon-arrow-left52 position-left"></i> 
 								<span class="text-semibold">
 								<!-- InstanceBeginEditable name="Item_Obj" -->
-User Manage
-							<!-- InstanceEndEditable -->
+	Users
+								<!-- InstanceEndEditable -->
 								</span> - 
 								<!-- InstanceBeginEditable name="Object_Page" -->
-	Create User
-	<!-- InstanceEndEditable -->
+	Your Account
+							  <!-- InstanceEndEditable -->
 								</h4>
 						</div>
 					</div>
@@ -165,13 +166,13 @@ User Manage
 							<li><a href="/admin/index.html"><i class="icon-home2 position-left"></i> Home</a></li>
 							<li><a href="#">
 							<!-- InstanceBeginEditable name="Item_Object_2" -->
-User Manage
+	Users
 							<!-- InstanceEndEditable -->
 							</a>
 							</li>
 							<li class="active">
 							<!-- InstanceBeginEditable name="Object_Page_2" -->
-Create User
+	Your Account
 							<!-- InstanceEndEditable -->
 							</li>
 						</ul>
@@ -189,7 +190,7 @@ Create User
 							<h5 class="panel-title">
 							<legend class="text-bold">
 							<!-- InstanceBeginEditable name="Form" -->
-							Create User Form
+	Your Account
 							<!-- InstanceEndEditable -->
 							</legend>
 							</h5>
@@ -197,7 +198,73 @@ Create User
 
 						<div class="panel-body">
 							<!-- InstanceBeginEditable name="Content" -->
+							<form class="form-horizontal" action="#">
+								<fieldset class="content-group">
+									<div class="form-group">
+										<label class="control-label col-lg-2">Username</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" name="username" readonly disabled>
+										</div>
+									</div>
 
+									<div class="form-group">
+										<label class="control-label col-lg-2">Display Name</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" name="displayName">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-2">Phone</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" name="phone">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-2">Address</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" name="address">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="control-label col-lg-2">Activated Date</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" name="activatedAt" readonly disabled>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">Status</label>
+										<div class="col-lg-10">
+											<span name="activated"></span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">Email</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" name="email" readonly disabled>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">Role</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" name="role" readonly disabled>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-2">Register Date</label>
+										<div class="col-lg-10">
+											<input type="text" class="form-control" name="createdAt" readonly disabled>
+										</div>
+									</div>
+
+								</fieldset>
+
+								<div class="text-right">
+									<button type="button" class="btn btn-primary submit">Submit <i class="icon-arrow-right14 position-right"></i></button>
+								</div>
+							</form>
 							<!-- InstanceEndEditable -->
 						</div>
 					</div>

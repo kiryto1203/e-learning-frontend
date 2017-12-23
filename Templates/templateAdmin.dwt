@@ -11,6 +11,7 @@
 	<link href="/admin/assets/css/core.css" rel="stylesheet" type="text/css">
 	<link href="/admin/assets/css/components.css" rel="stylesheet" type="text/css">
 	<link href="/admin/assets/css/colors.css" rel="stylesheet" type="text/css">
+	<link href="/admin/assets/css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 	<!-- Core JS files -->
 	<script type="text/javascript" src="/admin/assets/js/plugins/pace.min.js"></script>
@@ -47,7 +48,7 @@
 				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
 			</ul>
 
-			<div class="navbar-right">
+		  <div class="navbar-right">
 				<ul class="nav navbar-nav">
 					<li class="dropdown dropdown-user">
 						<a class="dropdown-toggle" data-toggle="dropdown">
@@ -56,10 +57,11 @@
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+							<li><a href="/admin/current-user.html"><i class="icon-user-plus"></i> My profile</a></li>
 							<li class="divider"></li>
-							<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-							<li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+							<li><a href="#"><i class="icon-user-plus"></i> Change Password</a>
+							<li><a href="#" id="clear-data"><i class="icon-rotate-ccw3"></i> Clear Data Browser</a></li>
+						  <li><a href="/admin/logout.html"><i class="icon-switch2"></i> Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -115,21 +117,17 @@
 								<li>
 									<a href="#"><i class="icon-stack2"></i> <span>Questions</span></a>
 									<ul>
-										<li><a href="/admin/question.html">Questions</a></li>
+										<li><a href="/admin/list-question.html">Questions</a></li>
 										<li><a href="/admin/add-question.html">New Question</a></li>
 									</ul>
 								</li>
 								<li>
-									<a href="#"><i class="icon-copy"></i> <span>Layouts</span></a>
+									<a href="#"><i class="icon-user"></i> <span>Users</span></a>
 									<ul>
-										<li><a href="file:///D|/Java/PJ4/layout_1/LTR/index.html" id="layout1">Layout 1</a></li>
-										<li><a href="/admin/index.html" id="layout2">Layout 2 <span class="label bg-warning-400">Current</span></a></li>
-										<li><a href="file:///D|/Java/PJ4/layout_3/LTR/index.html" id="layout3">Layout 3</a></li>
-										<li><a href="file:///D|/Java/PJ4/layout_4/LTR/index.html" id="layout4">Layout 4</a></li>
-										<li class="disabled"><a href="file:///D|/Java/PJ4/layout_5/LTR/index.html" id="layout5">Layout 5 <span class="label">Coming soon</span></a></li>
+										<li><a href="/admin/list-users.html">Users</a></li>
+										<li><a href="/admin/add-user.html">New Users</a></li>
 									</ul>
 								</li>
-								
 								<!-- /page kits -->
 
 							</ul>
@@ -157,7 +155,7 @@
 								</span> - 
 								<!-- TemplateBeginEditable name="Object_Page" -->
 	
-								<!-- TemplateEndEditable -->
+							  <!-- TemplateEndEditable -->
 								</h4>
 						</div>
 					</div>
@@ -165,7 +163,7 @@
 					<div class="breadcrumb-line">
 						<ul class="breadcrumb">
 							<li><a href="/admin/index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-							<li><a href="/admin/components_notifications_pnotify.html">
+							<li><a href="#">
 							<!-- TemplateBeginEditable name="Item_Object_2" -->
 	
 							<!-- TemplateEndEditable -->
@@ -208,7 +206,7 @@
 
 				  <!-- Footer -->
 					<div class="footer text-muted">
-						&copy; 2017. <a href="#last" id="last">E Learing</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">TeamFor</a>
+						&copy; 2017. <a href="#last" id="last">E Learing</a> by <a href="http://45.77.175.249:50000/login" target="_blank">TeamFor</a>
 					</div>
 					<!-- /footer -->
 
@@ -222,7 +220,6 @@
 		<!-- /page content -->
 
 	</div>
-	<!-- /page container -->
-
+	<!-- /page container --><!-- TemplateBeginEditable name="EditRegion9" -->javascript<!-- TemplateEndEditable -->
 </body>
 </html>
