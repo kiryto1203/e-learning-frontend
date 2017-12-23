@@ -20,13 +20,13 @@ class subcategoryDto{
 class question{
   constructor(questionCode,questionType,questionContent,questionParentCode,creationDate,lastUpdateDate,creatorUsername,lastUpdaterUsername,point,subcategory){
     this.questionCode = questionCode || null;
-    this.questionType = questionType;
+    this.questionType = questionType || 1;
     this.questionParentCode = questionParentCode || null;
     this.creationDate = creationDate || main.now.getTime();
     this.lastUpdateDate = lastUpdateDate || main.now.getTime();
     this.creatorUsername = currentUser.username || "",
     this.lastUpdaterUsername = currentUser.username || "",
-    this.point = point || 0;
+    this.point = point || 1;
     this.subcategory = subcategory || new subcategoryDto();
 
   }
@@ -65,14 +65,19 @@ class questionDto{
   }
 }
 
+var questionCode="";
+try {
+  questionCode = main.getParameterURL("questionCode");
+} catch (err) { console.log(err);}
 var varQuestions = [new questionDto()];
 var answerBank = [];
 var categories = [];
-if(localStorage.getItem('categories'))
+
+if(localStorage.getItem('categories') && main.isValid(localStorage.getItem('categories')))
   categories = JSON.parse(localStorage.getItem('categories'));
-if(localStorage.getItem('answers'))
+if(localStorage.getItem('answers') && main.isValid(localStorage.getItem('answers')))
   answerBank = JSON.parse(localStorage.getItem('answers'));
-if(localStorage.getItem('questions')){
+if(localStorage.getItem('questions') && main.isValid(localStorage.getItem('questions'))){
   varQuestions = JSON.parse(localStorage.getItem('questions'));
 }
 localStorage.setItem('questions',JSON.stringify(varQuestions));
@@ -84,14 +89,20 @@ class App extends React.Component{
       subcateNumber: 0,
       cateNumber: 0,
       subcategory: [],
+      subcategoryCode: [],
       questionNumber: varQuestions.length,
     }
   }
-
   componentWillMount(){
+    if(main.isValid(questionCode))
+      this.fetchDataFromQuestionCode(questionCode);
+    else
+      this.createNewData()
+  }
+  createNewData(){
     let that = this,array=[];
     if(!localStorage.getItem('categories') || localStorage.getItem('categories')==="undefined"){
-      Promise.all([main.ajaxPromise(`${api.categories}?limit=1000`,"GET"),  main.ajaxPromise(`${api.answers}?limit=10000`,"GET")])
+      Promise.all([main.ajaxGetPromise(`${api.categories}?limit=1000`,"GET"),  main.ajaxGetPromise(`${api.answers}?limit=10000`,"GET")])
       .then((rs) => {
         categories = rs[0].data.results;
         answerBank = rs[1].data.results;
@@ -99,56 +110,117 @@ class App extends React.Component{
         localStorage.setItem('answers', JSON.stringify(answerBank));
         categories.forEach(elem => { array.push(elem); });
         varQuestions[0].questionBankDto.subcategory.subcategoryCode
-          = array[that.state.cateNumber].subcategoriesName[0];
+          = array[that.state.cateNumber].subcategoriesCode[0];
         varQuestions[0].questionBankDto.questionCode = that.state.questionNumber;
         localStorage.setItem('questions',JSON.stringify(varQuestions));
-        that.setState({categories: array,subcategory: array[that.state.cateNumber].subcategoriesName});
+        that.setState({
+          categories: array,
+          subcategory: array[that.state.cateNumber].subcategoriesName,
+          subcategoryCode: array[that.state.cateNumber].subcategoriesCode
+        });
       })
     }else{
       array = JSON.parse(localStorage.getItem('categories'));
       for (let i = 0,size = array.length; i < size; i++) {
-        let index = array[i].subcategoriesName.findIndex(x => x===varQuestions[0].questionBankDto.subcategory.subcategoryCode);
+        let index = array[i].subcategoriesCode.findIndex(x => x===varQuestions[0].questionBankDto.subcategory.subcategoryCode);
         if(index>=0){
-          that.setState({subcateNumber: index,subcategory: array[i].subcategoriesName,categories: array, cateNumber: i});
+          that.setState({
+            subcateNumber: index,
+            subcategory: array[i].subcategoriesName,
+            subcategoryCode: array[i].subcategoriesCode,
+            categories: array,
+            cateNumber: i,});
           break;
         }
       }
     }
   }
-
+  fetchDataFromQuestionCode(questionCode){
+    let that = this,array=[];
+    Promise.all([main.ajaxGetPromise(`${api.categories}?limit=1000`,""),
+    main.ajaxGetPromise(`${api.answers}?limit=10000`,""),
+    main.ajaxGetPromise(`${api.questions}/${questionCode}`,"")])
+    .then((rs) => {
+      console.log(rs);
+      if(rs[2].data.code!=="200"){
+        console.log(elem.data.code);
+        main.handleResult(elem.data.code,elem.data.message);
+        check=false;
+      }{
+        categories = rs[0].data.results;
+        answerBank = rs[1].data.results;
+        localStorage.setItem('categories', JSON.stringify(categories));
+        localStorage.setItem('answers', JSON.stringify(answerBank));
+        categories.forEach(elem => { array.push(elem); });
+        varQuestions = [];
+        varQuestions.push(rs[2].data.data);
+        localStorage.setItem('questions',JSON.stringify(varQuestions));
+        that.setState({
+          categories: array,
+          subcategory: array[that.state.cateNumber].subcategoriesName,
+          subcategoryCode: array[that.state.cateNumber].subcategoriesCode
+        });
+      }
+    })
+  }
   handelSelectCate(e){
       let position = this.state.categories.findIndex(w => w.categoryCode===e);
       for (let i = 0,size= varQuestions.length; i < size; i++) {
-        varQuestions[i].questionBankDto.subcategory.subcategoryCode = this.state.categories[position].subcategoriesName[0];
+        varQuestions[i].questionBankDto.subcategory.subcategoryCode = this.state.categories[position].subcategoriesCode[0];
       }
       localStorage.setItem('questions',JSON.stringify(varQuestions));
       this.setState({
         cateNumber: position,
-        subcategory: this.state.categories[position].subcategoriesName });
+        subcategory: this.state.categories[position].subcategoriesName,
+        subcategoryCode: this.state.categories[position].subcategoriesCode,
+       });
   }
-
   handleAddQuestion(){
     var varQuestion = new questionDto();
     varQuestion.questionBankDto.questionParentCode = varQuestions[0].questionBankDto.questionCode;
     varQuestion.questionBankDto.questionCode =  varQuestions[this.state.questionNumber-1].questionBankDto.questionCode + 1;;
+    varQuestion.questionBankDto.subcategory = varQuestions[0].questionBankDto.subcategory;
+    varQuestion.questionBankDto.questionType = 1;
+    varQuestion.questionBankDto.point = 1;
     varQuestions.push(varQuestion);
     localStorage.setItem('questions',JSON.stringify(varQuestions));
     this.setState({questionNumber: this.state.questionNumber+1});
   }
-
   handleDeleteQuestion(e){
     let order = varQuestions.findIndex(w=>w.questionBankDto.questionCode===e);
     varQuestions.splice(order,1);
     localStorage.setItem('questions',JSON.stringify(varQuestions));
-    console.log(varQuestions);
     this.setState({questionNumber: this.state.questionNumber-1});
-
   }
-
+  handelDelteForwardChange(){
+    this.setState({questionNumber: varQuestions.length});
+  }
   handleSubmit(){
-    console.log(varQuestions);
-  }
+    main.startProcess(".submit");
+    if(main.isValid(questionCode)){
+      main.ajaxPutPromise(api.questions,JSON.stringify(varQuestions[0]))
+      .then((rs) => {
+        main.handleResult(rs.data.code,rs.data.message);
+        main.endProcess(".submit");
+        localStorage.removeItem("questions");
+      },(rs)=>{
+        main.handleResult("999");
+        main.endProcess(".submit");
+      });
+    }else {
+      main.ajaxPostPromise(api.questions,JSON.stringify(varQuestions))
+      .then((rs) => {
+        main.handleResult(rs.data.code,rs.data.message);
+        main.endProcess(".submit");
+        localStorage.removeItem("questions");
+      },(rs)=>{
+        main.handleResult("999");
+        main.endProcess(".submit");
+      });
+    }
 
+    return false;
+  }
   render(){
     let listQuestion = [];
     for (let i = 0; i < varQuestions.length; i++) {
@@ -156,17 +228,19 @@ class App extends React.Component{
         qustionCode={varQuestions[i].questionBankDto.questionCode}
         questionNumber={this.state.questionNumber}
         handleAddQuestion={this.handleAddQuestion.bind(this)}
-        questionNumber={i} handleDeleteQuestion={this.handleDeleteQuestion.bind(this)}/>);
+        questionNumber={i} handleDeleteQuestion={this.handleDeleteQuestion.bind(this)}
+        handelDelteForwardChange={this.handelDelteForwardChange.bind(this)}/>);
     }
     return (
       <form className="form-horizontal" action="#">
         <Category categories={this.state.categories} handelSelectCate={this.handelSelectCate.bind(this)}
            cateNumber={this.state.cateNumber}/>
-        <SubCategory subcategory={this.state.subcategory} subcateNumber={this.state.subcateNumber}/>
+        <SubCategory subcategory={this.state.subcategory} subcateNumber={this.state.subcateNumber}
+          subcategoryCode={this.state.subcategoryCode}/>
         {listQuestion}
         <div className="form-group">
             <div className="text-right">
-              <button type="submit" className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>
+              <button type="button" className="btn btn-primary submit" onClick={this.handleSubmit.bind(this)}>
                 <a href="#last">Submit </a>
                 <i className="icon-arrow-right14 position-right"></i></button>
             </div>
@@ -177,11 +251,9 @@ class App extends React.Component{
 }
 
 class Category extends React.Component {
-
   handelSelectCate(e){
     this.props.handelSelectCate(e.target.value);
   }
-
   render(){
     let categories="";
     if(this.props.categories){
@@ -206,18 +278,19 @@ class Category extends React.Component {
 
 class SubCategory extends React.Component {
     handelSelectSubCate(e){
+      let index = this.props.subcategory.findIndex(w=>w===e.target.value);
       for (let i = 0,size= varQuestions.length; i < size; i++) {
-        varQuestions[i].questionBankDto.subcategory.subcategoryCode = e.target.value;
+        varQuestions[i].questionBankDto.subcategory.subcategoryCode = this.props.subcategoryCode[index];
       }
       localStorage.setItem('questions',JSON.stringify(varQuestions));
     }
-
     render(){
-      let categories="";
+      let categories="",that=this;
       if(this.props.subcategory){
         let that = this;
           categories = this.props.subcategory.map((v,k)=>{
-            return <SelectItem value={v} content={v} key={k} isSelected={k===that.props.subcateNumber} />
+            return <SelectItem value={that.props.subcategoryCode[k]} content={v}
+              key={main.guid()} isSelected={k===that.props.subcateNumber} />
           })
       }
       return(
@@ -231,7 +304,6 @@ class SubCategory extends React.Component {
   			</div>
       )
     }
-
 }
 
 class QuestionType extends React.Component{
@@ -240,40 +312,68 @@ class QuestionType extends React.Component{
     this.state = {
       questionCode: varQuestions[props.questionNumber].questionBankDto.questionCode || 1,
       questionType : varQuestions[props.questionNumber].questionBankDto.questionType || 1,
-      level: getLevel(varQuestions,varQuestions[props.questionNumber].questionBankDto.questionCode || 1)
+      level: getLevel(varQuestions,varQuestions[props.questionNumber].questionBankDto.questionCode || 1),
+      point: varQuestions[props.questionNumber].questionBankDto.point || 1
     }
   }
   handleSelectQuestionType(e){
-    varQuestions[this.props.questionNumber].questionBankDto.questionType = parseInt(e.target.value);
-    varQuestions[this.props.questionNumber].answerDtos = [];
-    localStorage.setItem('questions',JSON.stringify(varQuestions));
-    this.setState({questionType: e.target.value});
+    let value = e.target.value,that = this,
+        old = varQuestions[this.props.questionNumber].questionBankDto.questionType;
+    if(old==3 || value=="3"){
+      main.confirm(`You are changing question type between Paragraph and other question type.\n
+        All your question childs or answers will be delete.`)
+        .then(()=>{
+          let array=[];
+          varQuestions.forEach((v,k) => {
+            if(v.questionBankDto.questionParentCode==varQuestions[that.props.questionNumber].questionBankDto.questionCode)
+              array.push(k);
+          });
+          array.forEach(elem => { varQuestions.splice(array[0],1); });
+          varQuestions[that.props.questionNumber].questionBankDto.questionType = parseInt(value);
+          varQuestions[that.props.questionNumber].answerDtos = [];
+          localStorage.setItem('questions',JSON.stringify(varQuestions));
+          that.setState({questionType: parseInt(value)});
+          this.props.handelDelteForwardChange();
+        },()=>{
+          $(`#${this.props.questionNumber}-select`).val(3);
+        })
+    }else{
+      varQuestions[that.props.questionNumber].questionBankDto.questionType = parseInt(value);
+      localStorage.setItem('questions',JSON.stringify(varQuestions));
+      that.setState({questionType: parseInt(value)});
+    }
   }
-
   handleAddQuestion(){
     this.props.handleAddQuestion();
   }
-
   handleDeleteQuestion(e){
     this.props.handleDeleteQuestion(this.state.questionCode);
     return false;
   }
-
+  handleChangePoint(e){
+    if(varQuestions[this.props.questionNumber].questionBankDto.questionType==3){
+      main.notify("Can't change point of Paragraph Question Type.")
+    }else{
+      varQuestions[this.props.questionNumber].questionBankDto.point = e;
+      localStorage.setItem('questions',JSON.stringify(varQuestions));
+    }
+  }
   componentDidMount(){
     $("a[href='#']").click(function(e){
       e.preventDefault();
     })
   }
-
   render(){
     let list = [];
     let that = this;
     for(let [k,v] of questionType.entries()){
       list.push(<SelectItem value={k} content={v} key={k} isSelected={k==this.state.questionType}/>)
     }
+    console.log(varQuestions);
     let description = varQuestions[this.props.questionNumber].questionBankDto.questionParentCode == null
     ? "" : `Question ${varQuestions[this.props.questionNumber].questionBankDto.questionParentCode} Child`;
     let indent = "-- ".repeat(this.state.level);
+    let idName = `${this.props.questionNumber}-select`;
     return(
       <div>
         <div className="form-group">
@@ -286,17 +386,41 @@ class QuestionType extends React.Component{
           </label>
         </div>
         <div className="form-group">
-          <label className="control-label col-lg-2">{indent} Question Type</label>
-            <div className="col-lg-10">
-              <select className="form-control" onChange={this.handleSelectQuestionType.bind(this)}>
+          <label className="control-label col-lg-2">{indent} Question Type - Point</label>
+            <div className="col-lg-5">
+              <select className="form-control" id={idName} onChange={this.handleSelectQuestionType.bind(this)}>
                {list}
              </select>
             </div>
+            <QuesitonPoint key={main.guid()} questionNumber={this.props.questionNumber} handleChangePoint={this.handleChangePoint.bind(this)}
+              point={this.state.point} questionType={this.state.questionType}/>
         </div>
-        <QuestionForm questionType={this.state.questionType}
+        <QuestionForm key={main.guid()} questionType={this.state.questionType}
           questionNumber = {this.props.questionNumber}
           handleAddQuestion={this.handleAddQuestion.bind(this)}
           level={this.state.level}/>
+      </div>
+    )
+  }
+}
+
+class QuesitonPoint extends React.Component{
+  handleChangePoint(e){
+    this.props.handleChangePoint(e.target.value);
+  }
+  render(){
+    return(
+      <div className="col-lg-5">
+        {
+            this.props.questionType == 3
+            ? <input type="number" className="form-control" placeholder="Enter Question Point"
+                  defaultValue="0" disabled
+                  onChange={this.handleChangePoint.bind(this)}/>
+            : <input type="number" className="form-control" placeholder="Enter Question Point"
+                  defaultValue={this.props.point}
+                  onChange={this.handleChangePoint.bind(this)}/>
+        }
+
       </div>
     )
   }
@@ -321,7 +445,7 @@ class QuestionForm extends React.Component{
       main.notify("Question content can't same.",3);
     }else{
       PNotify.removeAll();
-      PNotify.prototype.options.delay = 2000;
+      PNotify.prototype.options.delay = 4000;
       varQuestions[this.props.questionNumber].questionBankDto.questionContent = value;
       localStorage.setItem('questions',JSON.stringify(varQuestions));
     }
@@ -335,7 +459,7 @@ class QuestionForm extends React.Component{
 
   handleAddAnswer(){
     var ans = new answers();
-    ans.systemResultDto.systemResultPosition = varQuestions[this.props.questionNumber].answerDtos.length + 1;
+    ans.systemResultDto.systemResultPosition = 1;
     varQuestions[this.props.questionNumber].answerDtos.push(ans);
     localStorage.setItem('questions',JSON.stringify(varQuestions));
     this.setState({answers: varQuestions[this.props.questionNumber].answerDtos});
@@ -352,19 +476,19 @@ class QuestionForm extends React.Component{
   }
 
   switchQuestionType(questionType){
-    if(questionType===3 || questionType==="3")
+    if(questionType===3 || questionType==="3"){
       return ( <div>
                 <ButtonAddQuestion questionType={this.props.questionType} handleAddQuestion={this.handleAddQuestion.bind(this)}/>
               </div> )
-    return(
-      <div>
-        <Answers questionNumber={this.props.questionNumber} answers={this.state.answers}
-          handleDeleteAnswer={this.handleDeleteAnswer.bind(this)} answerNumber={this.state.answers.length}/>
-        <ButtonAddAnswer questionType={this.props.questionType} questionNumber={this.props.questionNumber}
-          handleAddAnswer={this.handleAddAnswer.bind(this)}
-           status={this.state.statusButton} />
-      </div>
-    )
+    }else{
+      return ( <div>
+                  <Answers questionNumber={this.props.questionNumber} answers={this.state.answers}
+                    handleDeleteAnswer={this.handleDeleteAnswer.bind(this)} answerNumber={this.state.answers.length}/>
+                  <ButtonAddAnswer questionType={this.props.questionType} questionNumber={this.props.questionNumber}
+                    handleAddAnswer={this.handleAddAnswer.bind(this)}
+                     status={this.state.statusButton} />
+                </div> )
+    }
   }
 
   render(){
@@ -458,7 +582,6 @@ class Answers extends React.Component {
       answerNumber: props.answerNumber
     }
   }
-
   handleDeleteAnswer(){
     this.setState({numberAnswer: this.state.numberAnswer--});
     this.props.handleDeleteAnswer();
@@ -495,14 +618,21 @@ class AnswerItem extends React.Component {
   }
 
   handleChangeAnswer(f,e){
-    if(varQuestions[this.props.questionNumber].answerDtos.findIndex(w=>w.answerBankDto.answerContent===e.target.value)>=0){
-      PNotify.prototype.options.delay = 200000;
-      main.notify("Answers can't same in on question.",3);
+    let className = `.answer-bank-${this.props.questionNumber}-${this.state.order}`;
+    let value = e.target.value;
+    $(className).bind('typeahead:selected', function(obj, datum, name) {
+      value = datum.value;
+    });
+    if(varQuestions[this.props.questionNumber].answerDtos.findIndex(w=>w.answerBankDto.answerContent===value)>=0){
+      PNotify.prototype.options.delay = 20000;
+      main.notify("Answers can't same in on a question.",3);
     }else{
-      PNotify.prototype.options.delay = 2000;
-      varQuestions[this.props.questionNumber].answerDtos[this.props.order].answerBankDto.answerContent = e.target.value;
+      PNotify.removeAll();
+      PNotify.prototype.options.delay = 4000;
+      varQuestions[this.props.questionNumber].answerDtos[this.props.order].answerBankDto.answerContent = value;
       localStorage.setItem('questions',JSON.stringify(varQuestions));
     }
+    console.log(varQuestions);
   }
 
   handleChangeCorrect(e){
@@ -548,7 +678,7 @@ class AnswerItem extends React.Component {
     let content ="";
     if(varQuestions[this.props.questionNumber].answerDtos[this.props.order]!=null)
       content = varQuestions[this.props.questionNumber].answerDtos[this.props.order].answerBankDto.answerContent;
-    let className=`${this.props.questionNumber}-correct`;
+    let className=`${this.props.questionNumber}-${this.props.order}-correct`;
     return(
       <div className="form-group">
         <label className="control-label col-lg-2">Answer {this.state.order}</label>
@@ -574,7 +704,7 @@ class AnswerItem extends React.Component {
 class SelectItem extends React.Component{
     render(){
       return(
-        <option value={this.props.value} selected={this.props.isSelected} ref={this.props.value}>{this.props.content}</option>
+        <option value={this.props.value} selected={this.props.isSelected} >{this.props.content}</option>
       )
     }
 }
@@ -584,20 +714,35 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-function validateQuestion(question){
-  switch (question.questionBankDto.questionType) {
-    case 1:
-      break;
-    case 2:
-      break;
-    case 3:
-      break;
-    case 4:
-      break;
-    default:
-
-  }
-}
+// function validateQuestion(question){
+//   switch (question.questionBankDto.questionType) {
+//     case 1:
+//       if(!question.questionBankDto.questionContent){
+//         main.notify("Question content is not emtpty");
+//         return false;
+//       }
+//       if(question.questionBankDto.point<0){
+//         main.notify("Question point can't be less than 0");
+//         return false;
+//       }
+//       if(question.answerDtos.length<2){
+//         main.handleResult("104");
+//         return false;
+//       }
+//       if()
+//
+//
+//       break;
+//     case 2:
+//       break;
+//     case 3:
+//       break;
+//     case 4:
+//       break;
+//     default:
+//
+//   }
+// }
 function getLevel(varQuestions,questionCode){
   let varQuestionLocal = varQuestions.find(w=> w.questionBankDto.questionCode==questionCode);
   if(varQuestionLocal == null || !varQuestionLocal.questionBankDto.questionParentCode) return 0;

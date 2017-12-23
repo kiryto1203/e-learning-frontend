@@ -26,22 +26,34 @@ function login(){
     main.endProcess(".login-form");
     return false;
   }
-  main.ajaxPromise(api.login,"POST",data)
-  .then((rs) => {
-    console.log(rs);
-    if(!rs.code && rs.status==="success"){
-      localStorage.setItem('bear',rs.data);
-      main.endProcess(".login-form");
-      setTimeout(function () {
-        main.notify("Login success.",2);
-        main.navigate();
-      });
-    }else{
-      main.handleResult(rs.code);
-    }
-  },(rs)=>{
-    main.endProcess(".login-form");
+  $.ajax({
+    "xhrFields": {
+      withCredentials: true
+    },
+    "url": api.login,
+    "type": "POST",
+    "data": data,
   })
+  .done(function(data,status,xhr) {
+    try { data = JSON.parse(data); } catch (err) {}
+    if(data.code==="200"){
+      main.setCurrentUser();
+      if(currentUser.role=="4"){
+        main.handleResult("403");
+      }else{
+        localStorage.setItem('bear',data.data);
+        main.endProcess(".login-form");
+        setTimeout(function () {
+          main.notify("Login success.",2);
+          main.navigate();
+        });
+      }
+    }else
+      main.handleResult(data.code.toString());
+  })
+  .fail(function(xhr,status,error) {
+    main.endProcess(".login-form");
+  });
 }
 function clear(){
   $("input[name=username]").val("");
@@ -49,6 +61,7 @@ function clear(){
 }
 $(document).ready(function() {
   $("button[type=button]").click(function(event) {
+    event.preventDefault();
     login();
     return false;
   });

@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><!-- InstanceBeginEditable name="TitlePage" -->User Manager<!-- InstanceEndEditable --> - E-Learning Admin</title>
+	<title><!-- InstanceBeginEditable name="TitlePage" -->List Questions<!-- InstanceEndEditable --> - E-Learning Admin</title>
 	<!-- Global stylesheets -->
 <!--	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">-->
 	<link href="/admin/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -25,7 +25,11 @@
 	<!-- /core JS files -->
 	<!-- Theme JS files -->
 	<!-- InstanceBeginEditable name="ElearningJS" -->
-	<script type="text/javascript" src="assets/js/pages/add_user.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/datatables.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/row_reorder.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/responsive.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/select2.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/pages/list-question.js"></script>
 	<!-- InstanceEndEditable -->
 	<!-- /theme JS files -->
 
@@ -150,12 +154,12 @@
 							<h4><i class="icon-arrow-left52 position-left"></i> 
 								<span class="text-semibold">
 								<!-- InstanceBeginEditable name="Item_Obj" -->
-User Manage
-							<!-- InstanceEndEditable -->
+	Questions
+								<!-- InstanceEndEditable -->
 								</span> - 
 								<!-- InstanceBeginEditable name="Object_Page" -->
-	Create User
-	<!-- InstanceEndEditable -->
+	List Questions
+								<!-- InstanceEndEditable -->
 								</h4>
 						</div>
 					</div>
@@ -165,13 +169,13 @@ User Manage
 							<li><a href="/admin/index.html"><i class="icon-home2 position-left"></i> Home</a></li>
 							<li><a href="#">
 							<!-- InstanceBeginEditable name="Item_Object_2" -->
-User Manage
+	Questions
 							<!-- InstanceEndEditable -->
 							</a>
 							</li>
 							<li class="active">
 							<!-- InstanceBeginEditable name="Object_Page_2" -->
-Create User
+	List Questions
 							<!-- InstanceEndEditable -->
 							</li>
 						</ul>
@@ -189,7 +193,7 @@ Create User
 							<h5 class="panel-title">
 							<legend class="text-bold">
 							<!-- InstanceBeginEditable name="Form" -->
-							Create User Form
+	List Question
 							<!-- InstanceEndEditable -->
 							</legend>
 							</h5>
@@ -197,7 +201,30 @@ Create User
 
 						<div class="panel-body">
 							<!-- InstanceBeginEditable name="Content" -->
-
+								<table class="table datatable-api">
+									<thead>
+										<tr>
+				                <th>Quesiton Code</th>
+				                <th>Category</th>
+				                <th>SubCategory</th>
+				                <th>Type</th>
+				                <th>Point</th>
+				                <th class="text-center">Actions</th>
+				            </tr>
+									</thead>
+									<tbody>
+									</tbody>
+									<tfoot>
+										<tr>
+												<td>Quesiton Code</td>
+												<td>Category</td>
+												<td>SubCategory</td>
+												<td>Type</td>
+												<td>Point</td>
+												<td class="text-center">Actions</td>
+							       </tr>
+									</tfoot>
+								</table>
 							<!-- InstanceEndEditable -->
 						</div>
 					</div>
@@ -220,6 +247,8 @@ Create User
 		<!-- /page content -->
 
 	</div>
-	<!-- /page container --><!-- InstanceBeginEditable name="EditRegion9" -->javascript<!-- InstanceEndEditable -->
+	<!-- /page container --><!-- InstanceBeginEditable name="EditRegion9" -->
+
+	<!-- InstanceEndEditable -->
 </body>
 <!-- InstanceEnd --></html>

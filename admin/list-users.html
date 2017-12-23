@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><!-- InstanceBeginEditable name="TitlePage" -->User Manager<!-- InstanceEndEditable --> - E-Learning Admin</title>
+	<title><!-- InstanceBeginEditable name="TitlePage" --> List User<!-- InstanceEndEditable --> - E-Learning Admin</title>
 	<!-- Global stylesheets -->
 <!--	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">-->
 	<link href="/admin/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -11,6 +11,7 @@
 	<link href="/admin/assets/css/core.css" rel="stylesheet" type="text/css">
 	<link href="/admin/assets/css/components.css" rel="stylesheet" type="text/css">
 	<link href="/admin/assets/css/colors.css" rel="stylesheet" type="text/css">
+	<link href="/admin/assets/css/pnotify.custom.min.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 	<!-- Core JS files -->
 	<script type="text/javascript" src="/admin/assets/js/plugins/pace.min.js"></script>
@@ -24,7 +25,11 @@
 	<!-- /core JS files -->
 	<!-- Theme JS files -->
 	<!-- InstanceBeginEditable name="ElearningJS" -->
-	<script type="text/javascript" src="assets/js/pages/add_user.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/datatables.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/row_reorder.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/responsive.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/plugins/select2.min.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/pages/list-user.js"></script>
 	<!-- InstanceEndEditable -->
 	<!-- /theme JS files -->
 
@@ -47,7 +52,7 @@
 				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
 			</ul>
 
-			<div class="navbar-right">
+		  <div class="navbar-right">
 				<ul class="nav navbar-nav">
 					<li class="dropdown dropdown-user">
 						<a class="dropdown-toggle" data-toggle="dropdown">
@@ -56,10 +61,11 @@
 							<i class="caret"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-right">
-							<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+							<li><a href="/admin/current-user.html"><i class="icon-user-plus"></i> My profile</a></li>
 							<li class="divider"></li>
-							<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-							<li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+							<li><a href="#"><i class="icon-user-plus"></i> Change Password</a>
+							<li><a href="#" id="clear-data"><i class="icon-rotate-ccw3"></i> Clear Data Browser</a></li>
+						  <li><a href="/admin/logout.html"><i class="icon-switch2"></i> Logout</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -115,21 +121,17 @@
 								<li>
 									<a href="#"><i class="icon-stack2"></i> <span>Questions</span></a>
 									<ul>
-										<li><a href="/admin/question.html">Questions</a></li>
+										<li><a href="/admin/list-question.html">Questions</a></li>
 										<li><a href="/admin/add-question.html">New Question</a></li>
 									</ul>
 								</li>
 								<li>
-									<a href="#"><i class="icon-copy"></i> <span>Layouts</span></a>
+									<a href="#"><i class="icon-user"></i> <span>Users</span></a>
 									<ul>
-										<li><a href="file:///D|/Java/PJ4/layout_1/LTR/index.html" id="layout1">Layout 1</a></li>
-										<li><a href="/admin/index.html" id="layout2">Layout 2 <span class="label bg-warning-400">Current</span></a></li>
-										<li><a href="file:///D|/Java/PJ4/layout_3/LTR/index.html" id="layout3">Layout 3</a></li>
-										<li><a href="file:///D|/Java/PJ4/layout_4/LTR/index.html" id="layout4">Layout 4</a></li>
-										<li class="disabled"><a href="file:///D|/Java/PJ4/layout_5/LTR/index.html" id="layout5">Layout 5 <span class="label">Coming soon</span></a></li>
+										<li><a href="/admin/list-users.html">Users</a></li>
+										<li><a href="/admin/add-user.html">New Users</a></li>
 									</ul>
 								</li>
-								
 								<!-- /page kits -->
 
 							</ul>
@@ -152,12 +154,12 @@
 							<h4><i class="icon-arrow-left52 position-left"></i> 
 								<span class="text-semibold">
 								<!-- InstanceBeginEditable name="Item_Obj" -->
-User Manage
-							<!-- InstanceEndEditable -->
+	Users
+								<!-- InstanceEndEditable -->
 								</span> - 
 								<!-- InstanceBeginEditable name="Object_Page" -->
-	Create User
-	<!-- InstanceEndEditable -->
+	List Users
+							  <!-- InstanceEndEditable -->
 								</h4>
 						</div>
 					</div>
@@ -165,15 +167,15 @@ User Manage
 					<div class="breadcrumb-line">
 						<ul class="breadcrumb">
 							<li><a href="/admin/index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-							<li><a href="/admin/components_notifications_pnotify.html">
+							<li><a href="#">
 							<!-- InstanceBeginEditable name="Item_Object_2" -->
-User Manage
+	Users
 							<!-- InstanceEndEditable -->
 							</a>
 							</li>
 							<li class="active">
 							<!-- InstanceBeginEditable name="Object_Page_2" -->
-Create User
+	List Users
 							<!-- InstanceEndEditable -->
 							</li>
 						</ul>
@@ -191,7 +193,7 @@ Create User
 							<h5 class="panel-title">
 							<legend class="text-bold">
 							<!-- InstanceBeginEditable name="Form" -->
-							Create User Form
+	List Users
 							<!-- InstanceEndEditable -->
 							</legend>
 							</h5>
@@ -199,72 +201,32 @@ Create User
 
 						<div class="panel-body">
 							<!-- InstanceBeginEditable name="Content" -->
-							<form class="form-horizontal" action="#">
-								<fieldset class="content-group">
-									<div class="form-group">
-										<label class="control-label col-lg-2">Username (*)</label>
-										<div class="col-lg-10">
-											<input type="text" class="form-control" name="username" id="username">
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="control-label col-lg-2">Password (*)</label>
-										<div class="col-lg-10">
-											<input type="password" class="form-control" name="password_digest" id="password_digest">
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="control-label col-lg-2">Display Name </label>
-										<div class="col-lg-10">
-											<input type="text" class="form-control" name="dipaly_name" id="display_name">
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="control-label col-lg-2">Email (*)</label>
-										<div class="col-lg-10">
-											<input type="email" class="form-control" name="email" id="email">
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="control-label col-lg-2">Phone</label>
-										<div class="col-lg-10">
-											<input type="text" class="form-control" name="phone" id="phone">
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="control-label col-lg-2">Address</label>
-										<div class="col-lg-10">
-											<textarea name="address" id="address">
-												
-											</textarea>
-										</div>
-									</div>
-
-			                        <div class="form-group">
-			                        	<label class="control-label col-lg-2">Avatar</label>
-			                        	<div class="col-lg-10">
-				                            <input type="file" class="form-control" name="avatar" id="avatar">
-			                            </div>
-			                        </div>
-
-									<div class="form-group">
-										<label class="control-label col-lg-2">Permission</label>
-										<div class="col-lg-10">
-											<select name="select" class="form-control" name="role" id="role">
-			                                </select>
-										</div>
-									</div>
-								</fieldset>
-
-								<div class="text-right">
-									<button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
-								</div>
-							</form>
+							<table class="table datatable-api">
+								<thead>
+									<tr>
+											<th>Username</th>
+											<th>Display Name</th>
+											<th>Email</th>
+											<th>Role</th>
+											<th>Register Date</th>
+											<th>Activated</th>
+											<th class="text-center">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+								<tfoot>
+									<tr>
+											<td>Username</td>
+											<td>Display Name</td>
+											<td>Email</td>
+											<td>Role</td>
+											<td>Register Date</td>
+											<td>Activated</td>
+											<td class="text-center">Actions</td>
+									 </tr>
+								</tfoot>
+							</table>
 							<!-- InstanceEndEditable -->
 						</div>
 					</div>
@@ -273,7 +235,7 @@ Create User
 
 				  <!-- Footer -->
 					<div class="footer text-muted">
-						&copy; 2017. <a href="#last" id="last">E Learing</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">TeamFor</a>
+						&copy; 2017. <a href="#last" id="last">E Learing</a> by <a href="http://45.77.175.249:50000/login" target="_blank">TeamFor</a>
 					</div>
 					<!-- /footer -->
 
@@ -287,7 +249,6 @@ Create User
 		<!-- /page content -->
 
 	</div>
-	<!-- /page container -->
-
+	<!-- /page container --><!-- InstanceBeginEditable name="EditRegion9" --><!-- InstanceEndEditable -->
 </body>
 <!-- InstanceEnd --></html>
