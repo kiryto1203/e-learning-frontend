@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {Question} from '../../entity/questions';
-import {QuestionService} from '../../service/question/question.service';
-import {LocalstorageKey} from '../../utility/localstorage-key';
-import {AnswerUser} from '../../entity/answer-user';
+import {Question} from '../../shared/entity/questions';
+import {QuestionService} from '../question.service';
+import {LocalstorageKey} from '../../shared/utility/localstorage-key';
+import {AnswerUser} from '../../shared/entity/answer-user';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  templateUrl: './test-center.component.html',
+  styleUrls: ['./test-center.component.css']
 })
-export class TestComponent implements OnInit {
+export class TestCenterComponent implements OnInit {
   questions: Question[];
   questionCurrent: Question;
   order: number;
@@ -20,6 +20,7 @@ export class TestComponent implements OnInit {
   constructor(private questionService: QuestionService,
               private route: ActivatedRoute) {
     this.order = 1;
+    alert(1);
   }
 
   ngOnInit() {
