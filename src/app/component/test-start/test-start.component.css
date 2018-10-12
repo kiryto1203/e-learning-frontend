@@ -1,0 +1,27 @@
+.btn-start{
+  background-color: rgb(0,175,173);
+  padding: 10px 20px;
+  border-radius: 3px;
+  font-size: 20px;
+  border:none;
+  cursor: pointer;
+  color: #fff;
+}
+.rules{
+  border: #009688;
+  border-radius: 5px;
+  background-color:rgb(242,244,247);
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align:left;
+}
+.rules h3{
+  font-size: 20px;
+  margin: 5px;
+  color: #333;
+}
+.rules p{
+  margin: 4px 5px;
+  font-size: 14px;
+  color: #464646;
+}
