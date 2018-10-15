@@ -14,7 +14,7 @@ export class QuestionResolveServiceService implements Resolve<Question[]>{
       take(1),
       mergeMap(questions => {
         if (questions) { return of(questions); } else {
-          this.router.navigate(['/test-center-start']);
+          this.router.navigate(['/examination']);
           return EMPTY;
         }
       })

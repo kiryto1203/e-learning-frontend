@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Question} from '../../shared/entity/questions';
-import {TestStartComponent} from '../test-start/test-start.component';
 import {RouterModule} from '@angular/router';
 import {LogService} from '../../log.service';
 
