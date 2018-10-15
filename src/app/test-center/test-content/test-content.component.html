@@ -1,10 +1,20 @@
 <div class="content">
-  <p *ngIf="questionParent">{{questionParent}}</p>
-  <div class="question">
-    <h3>Question {{order}}: </h3>
-    <p>{{questionCurrent.content}}</p>
-  </div>
-  <div class="answer">
-
-  </div>
+    <p *ngIf="questionParent">{{questionParent}}</p>
+    <div class="question">
+        <h3>Question {{order}}: </h3>
+        <p>{{questionCurrent.content}}</p>
+    </div>
+    <div class="answer">
+        <div *ngIf="isChooseQuestion(); then chooseQuestion; else enterQuestion"></div>
+        <ng-template #chooseQuestion>
+            <p *ngFor="let answer of questionCurrent.answers; let i = index" id="answers-{{answer.answer_id}}">
+                {{getTitleForAnswerFromIndex(i)}}. {{ answer.content }}
+            </p>
+        </ng-template>
+        <ng-template #enterQuestion>
+      <textarea>
+        Enter your answer at here.
+      </textarea>
+        </ng-template>
+    </div>
 </div>
