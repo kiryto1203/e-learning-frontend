@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {Question} from '../../entity/questions';
-import {QuestionService} from '../../service/question/question.service';
-import {LocalstorageKey} from '../../utility/localstorage-key';
-import {AnswerUser} from '../../entity/answer-user';
+import {Question} from '../../shared/entity/questions';
+import {QuestionService} from '../question.service';
+import {LocalstorageKey} from '../../shared/utility/localstorage-key';
+import {AnswerUser} from '../../shared/entity/answer-user';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-test',
-  templateUrl: './test.component.html',
-  styleUrls: ['./test.component.css']
+  selector: 'examination',
+  templateUrl: './examination.component.html',
+  styleUrls: ['./examination.component.css']
 })
-export class TestComponent implements OnInit {
+export class ExaminationComponent implements OnInit {
   questions: Question[];
   questionCurrent: Question;
   order: number;
@@ -35,7 +35,6 @@ export class TestComponent implements OnInit {
   }
 
   getAnswer(): AnswerUser[] {
-    console.log(this.questions);
     const answersLocal = localStorage.getItem(LocalstorageKey.ANSWERS);
     if (answersLocal) { return JSON.parse(answersLocal); } else {
       const listAnswerUser = [];

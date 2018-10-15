@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Question} from '../../entity/questions';
-import {Api} from '../../utility/api';
-import {LogService} from '../log/log.service';
+import {Question} from '../shared/entity/questions';
+import {Api} from '../shared/utility/api';
+import {LogService} from '../log.service';
 
 @Injectable({
   providedIn: 'root'

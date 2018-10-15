@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Question} from '../../entity/questions';
-import {TestStartComponent} from '../test-start/test-start.component';
+import {Question} from '../../shared/entity/questions';
 import {RouterModule} from '@angular/router';
-import {LogService} from '../../service/log/log.service';
+import {LogService} from '../../log.service';
 
 @Component({
   selector: 'app-test-content',
