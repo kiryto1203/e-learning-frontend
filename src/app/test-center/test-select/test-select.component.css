@@ -8,7 +8,7 @@
     text-align: center;
     width: 200px;
     height:32px;
-    border: 1px solid rgb(0,175,173);;;
+    border: 1px solid rgb(0,175,173);
     border-radius: 3px;
     position: relative;
     cursor: pointer;
@@ -38,6 +38,14 @@
     transform: scaleY();
     overflow: hidden;
     height: 0px;
+}
+.select .option ul li:hover {
+    background: rgb(0,175,173);
+    color: #fff;
+}
+.option ul li{
+    margin: 0;
+    padding: 7px 10px;
 }
 ul {
     list-style-type: none;

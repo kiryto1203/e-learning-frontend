@@ -4,7 +4,6 @@ import {QuestionService} from '../question.service';
 import {LocalstorageKey} from '../../shared/utility/localstorage-key';
 import {AnswerUser} from '../../shared/entity/answer-user';
 import {ActivatedRoute} from '@angular/router';
-import {Common} from "../../shared/utility/common";
 
 @Component({
     selector: 'examination',
@@ -15,7 +14,7 @@ export class ExaminationComponent implements OnInit {
     questions: Question[];
     questionCurrent: Question;
     order: number;
-    questionParent: string;
+    questionParent: Question;
     answers: AnswerUser[];
     questionCodes: any[];
 
@@ -33,20 +32,10 @@ export class ExaminationComponent implements OnInit {
             this.questions = data.questions;
             this.answers = this.getAnswer();
             this.questionCurrent = this.questions[0];
-            this.questionCodes = this.getQuestionCodesFromQuestions(this.questions);
+            this.questionCodes = this.questionService.getQuestionCodesFromQuestions(this.questions);
+            this.questionParent = this.questionService.getQuestionFromQuestionCode(this.questionCurrent.parent, this.questions);
         });
     }
-
-    getQuestionCodesFromQuestions(questions: Question[]): any[] {
-        if (!questions.length) return [];
-        let result = [];
-        questions.forEach((v, k) => {
-            if(v.type != Common.Q_TYPE_PARAGRAPH)
-                result.push([k, v.question_code]);
-        });
-        return result;
-    }
-
 
     getAnswer(): AnswerUser[] {
         const answersLocal = localStorage.getItem(LocalstorageKey.ANSWERS);

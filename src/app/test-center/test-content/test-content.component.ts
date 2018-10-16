@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Question} from '../../shared/entity/questions';
 import {RouterModule} from '@angular/router';
 import {LogService} from '../../log.service';
-import {Common} from "../../shared/utility/common";
+import {Common} from '../../shared/utility/common';
 
 @Component({
     selector: 'app-test-content',
@@ -11,14 +11,15 @@ import {Common} from "../../shared/utility/common";
 })
 export class TestContentComponent implements OnInit {
     @Input() questionCurrent: Question;
-    @Input() questionParent: string;
+    @Input() questionParent: Question;
     @Input() order: number;
 
     constructor(private route: RouterModule,
                 private logService: LogService) {
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+    }
 
     getTitleForAnswerFromIndex(index: number): string {
         return Common.getStringUpperCaseFromIndex(index);
