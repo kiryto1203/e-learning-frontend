@@ -1,0 +1,90 @@
+
+.pagination{
+    display: -webkit-box;
+    padding: 0px 50px;
+    position: relative;
+    width: 210px;
+    margin: auto;
+}
+.pagenumber{
+    overflow: hidden;
+    position: relative;
+    width: 210px;
+    height:40px;
+}
+.pagenumberitem{
+    display: -webkit-box;
+    position: absolute;
+    left: 0px;
+}
+.pagination .previous, .pagination .next{
+    background:  rgb(0,175,173);;;
+    color: #fff;
+    border-radius: 3px;
+    margin: 0px 5px;
+    padding: 8px;
+    cursor: pointer;
+}
+.pagination p.previous,.pagination p.next{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    position: absolute;
+    top:0px;
+}
+.pagination .previous{
+    left: 0;
+}
+.pagination .next{
+    transform: rotate(-180deg);
+    right: 0;
+}
+.pagination .page{
+    padding: 10px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(0,175,173);;;
+    margin: 0px 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.pagination .page a{
+    text-decoration: none;
+    font-size:17px;
+    color: #fff;
+    font-weight: 700;
+    display: block;
+}
+.pagination .line{
+    display: inline-block;
+    width: 30px;
+    border-top: 3px solid rgb(0,175,173);;
+    margin: 0px;
+    padding-bottom: 5px;
+}
+.progress {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 15px;
+    background-color: rgb(164,218,210);
+}
+#myProgress {
+    width: 0%;
+    margin: 2px 0px;
+    border-radius: 3px;
+    background-color: #00afad;
+}
+@media (max-width: 320px){
+    .pagination .line{
+        width: 0px;
+    }
+    .pagenumber, .pagination{
+        width: 150px;
+    }
+}
+.pagination .page-current{
+    background-color: rgb(164,218,210);
+}

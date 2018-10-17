@@ -1,7 +1,17 @@
 <div>
-  <app-test-select></app-test-select>
-  <app-test-content [questionCurrent]="questionCurrent"
-                    [order]="order"
-                    [questionParent]="questionParent"></app-test-content>
-  <app-test-navigate></app-test-navigate>
+    <app-test-select [questionCodes]="questionCodes"
+                     [(order)]="order"
+                    [(questionCurrent)]="questionCurrent"
+                    [questions]="questions"
+                    [(questionParent)]="questionParent">
+    </app-test-select>
+    <app-test-content [questionCurrent]="questionCurrent"
+                      [order]="order"
+                      [questionParent]="questionParent">
+    </app-test-content>
+    <app-test-navigate [questionCodes]="questionCodes"
+                       [(order)]="order"
+                       [(questionCurrent)]="questionCurrent"
+                       [questions]="questions"
+                       [(questionParent)]="questionParent"></app-test-navigate>
 </div>
