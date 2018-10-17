@@ -1,18 +1,20 @@
 <div class="navigate">
-    <div class="selection">
-        <div class="select">
-            <p (click)="showOption()" >Question {{order}}</p>
-            <img src="../../../assets/arrow_select.png" class="img" alt="icon" (click)="showOption()"/>
-            <div class="option" [@openClose]="isShowOption ? 'open' : 'closed'">
-                <ul>
-                    <li *ngFor="let questionCode of questionCodes; let i = index" (click)="handleSelect(questionCode)">
-                        Question {{i + 1}}
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="progress">
-            <div id="myProgress">|</div>
-        </div>
-    </div>
+	<div class="selection">
+		<div class="select">
+			<p (click)="showOption()">Question {{order}} <img *ngIf="isDone(questionCurrent.question_code)" alt="icon" class="img-tick" src="../../../assets/tick.png"/></p>
+			<img src="../../../assets/arrow_select.png" class="img" alt="icon" (click)="showOption()"/>
+			<div class="option" [@openClose]="isShowOption ? 'open' : 'closed'">
+				<ul>
+					<li *ngFor="let questionCode of questionCodes; let i = index;" (click)="handleSelect(questionCode)">
+						Question {{i + 1}} <img *ngIf="isDone(questionCode)" alt="icon" class="img-tick" src="../../../assets/tick.png"/>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="progress">
+			<div id="myProgress" [@changeProgress]="{value: getStateChangeProgress(), params: { distance: distance }}">
+				{{noOfQuestionComplete}}
+			</div>
+		</div>
+	</div>
 </div>

@@ -1,3 +1,3 @@
 export class LocalstorageKey {
-  static ANSWERS = 'answers';
+	static ANSWERS = 'answers';
 }
