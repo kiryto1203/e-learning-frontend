@@ -1,16 +1,17 @@
 <div class="navigate">
-  <div class="pagination">
-    <p class="previous" (click)="handlePreviousQuestion()" ><img alt="icon" src="../../../assets/arrow.png" /></p>
-    <div class="pagenumber">
-      <div class="pagenumberitem" [@changeNavigate]="{value: getStateOrderChange(), params: { distance: distance}}">
-        <div *ngFor="let questionCode of questionCodes; let i = index">
-          <p class="{{order - 1 === i ? 'page page-current' : 'page'}}">
-            <a role="button">{{i + 1}}</a>
-          </p>
-          <p class="line"></p>
-        </div>
-      </div>
-    </div>
-    <p class="next" (click)="handleNextQuestion()"><img alt="icon" src="../../../assets/arrow.png" /></p>
-  </div>
+	<div class="pagination">
+		<p class="previous" (click)="handlePreviousQuestion()"><img alt="icon" src="../../../assets/arrow.png"/></p>
+		<div class="pagenumber">
+			<div class="pagenumberitem"
+				 [@changeNavigate]="{value: getStateOrderChange(), params: { distance: distance}}">
+				<div *ngFor="let questionCode of questionCodes; let i = index">
+					<p class="{{order - 1 === i ? 'page page-current' : 'page'}}">
+						<a role="button">{{i + 1}}</a>
+					</p>
+					<p class="line"></p>
+				</div>
+			</div>
+		</div>
+		<p class="next" (click)="handleNextQuestion()"><img alt="icon" src="../../../assets/arrow.png"/></p>
+	</div>
 </div>

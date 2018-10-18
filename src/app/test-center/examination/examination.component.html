@@ -1,17 +1,19 @@
 <div>
-    <app-test-select [questionCodes]="questionCodes"
-                     [(order)]="order"
-                    [(questionCurrent)]="questionCurrent"
-                    [questions]="questions"
-                    [(questionParent)]="questionParent">
-    </app-test-select>
-    <app-test-content [questionCurrent]="questionCurrent"
-                      [order]="order"
-                      [questionParent]="questionParent">
-    </app-test-content>
-    <app-test-navigate [questionCodes]="questionCodes"
-                       [(order)]="order"
-                       [(questionCurrent)]="questionCurrent"
-                       [questions]="questions"
-                       [(questionParent)]="questionParent"></app-test-navigate>
+	<app-test-select [questionCodes]="questionCodes"
+					 [(order)]="order"
+					 [(questionCurrent)]="questionCurrent"
+					 [questions]="questions"
+					 [(answers)]="answers"
+					 [(questionParent)]="questionParent">
+	</app-test-select>
+	<app-test-content [questionCurrent]="questionCurrent"
+					  [order]="order"
+					  [questionParent]="questionParent"
+					  [(answers)]="answers">
+	</app-test-content>
+	<app-test-navigate [questionCodes]="questionCodes"
+					   [(order)]="order"
+					   [(questionCurrent)]="questionCurrent"
+					   [questions]="questions"
+					   [(questionParent)]="questionParent"></app-test-navigate>
 </div>

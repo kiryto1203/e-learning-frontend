@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class LogService {
-  log: string[];
-  constructor() {
-    this.log = [];
-  }
-
-  addLog(msg: string): void {
-    const content = `${new Date()}: ${msg}`;
-    this.log.push(content);
-    console.log(content);
-  }
+	log: string[];
+	
+	constructor() {
+		this.log = [];
+	}
+	
+	addLog(msg: any): void {
+		const content = `${new Date()}: ${msg}`;
+		this.log.push(content);
+		console.log(content);
+	}
 }
