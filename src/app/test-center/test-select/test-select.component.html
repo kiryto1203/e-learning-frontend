@@ -1,12 +1,12 @@
 <div class="navigate">
 	<div class="selection">
 		<div class="select">
-			<p (click)="showOption()">Question {{order}} <img *ngIf="isDone(questionCurrent.question_code)" alt="icon" class="img-tick" src="../../../assets/tick.png"/></p>
-			<img src="../../../assets/arrow_select.png" class="img" alt="icon" (click)="showOption()"/>
+			<p (click)="showOption()">Question {{order}} <img *ngIf="isDone(questionCurrent.question_code)" alt="icon" class="img-tick" src="../../../assets/img/tick.png"/></p>
+			<img src="../../../assets/img/arrow_select.png" class="img" alt="icon" (click)="showOption()"/>
 			<div class="option" [@openClose]="isShowOption ? 'open' : 'closed'">
 				<ul>
 					<li *ngFor="let questionCode of questionCodes; let i = index;" (click)="handleSelect(questionCode)">
-						Question {{i + 1}} <img *ngIf="isDone(questionCode)" alt="icon" class="img-tick" src="../../../assets/tick.png"/>
+						Question {{i + 1}} <img *ngIf="isDone(questionCode)" alt="icon" class="img-tick" src="../../../assets/img/tick.png"/>
 					</li>
 				</ul>
 			</div>

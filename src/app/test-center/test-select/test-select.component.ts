@@ -50,13 +50,13 @@ export class TestSelectComponent implements OnInit {
 	changeProgress: string;
 	distance: number;
 	noOfQuestionComplete: number;
-	
+
 	constructor(private questionService: QuestionService) {
 		this.isShowOption = false;
 		this.changeProgress = '';
 		this.noOfQuestionComplete = 0;
 	}
-	
+
 	ngOnInit() {
 		this.distance = this.noOfQuestionComplete * (100 / this.questionCodes.length);
 	}

@@ -81,7 +81,7 @@ ul::-webkit-scrollbar-track {
 }
 
 ul::-webkit-scrollbar-track-piece {
-    background: url("../../../assets/background.png");
+    background: url("../../../assets/img/background.png");
 }
 
 ul::-webkit-scrollbar-thumb {
