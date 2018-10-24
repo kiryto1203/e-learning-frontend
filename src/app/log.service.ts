@@ -11,7 +11,7 @@ export class LogService {
 	}
 	
 	addLog(msg: any): void {
-		const content = `${new Date()}: ${msg}`;
+		const content = `${new Date()}: ${JSON.stringify(msg)}`;
 		this.log.push(content);
 		console.log(content);
 	}

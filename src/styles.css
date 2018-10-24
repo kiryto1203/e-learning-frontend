@@ -2,7 +2,7 @@
 /*@import url("icomoon.css");*/
 /*@import url("flexslider.css");*/
 /*@import url("owl.carousel.css");*/
-/*@import url("shortcodes.css");*/
+@import url("./assets/css/shortcodes.css");
 /*@import url("revolution-slider.css");*/
 /*@import url("magnific-popup.css");*/
 @import url("https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic");
@@ -9754,11 +9754,11 @@ ul.flat-socials li a:hover i {
     margin-bottom: 20px;
 }
 
-.flat-login .border-large input[type="password"] {
-    height: 60px;
-    color: #697ea4;
-    margin-bottom: 37px;
-}
+/*.flat-login .border-large input[type="password"] {*/
+    /*height: 60px;*/
+    /*color: #697ea4;*/
+    /*margin-bottom: 37px;*/
+/*}*/
 
 .flat-login .submit-wrap button {
     width: 100%;
@@ -10190,4 +10190,13 @@ input[type="submit"],
 .widget_search .search-form .search-submit,
 .btn-menu:before, .btn-menu:after, .btn-menu span {
     background-color: #01bafd;
+}
+.error {
+    padding: 5px 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.error-end {
+    margin-bottom: 30px;
 }

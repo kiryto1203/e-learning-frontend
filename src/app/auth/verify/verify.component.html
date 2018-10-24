@@ -4,7 +4,7 @@
 			<div class="col-md-6 col-md-offset-3">
 				<div class="flat-login">
 					<form class="flat-contact-form border-white border-large"
-						  (ngSubmit)="registerForm.invalid ? '' : onRegister()" #registerForm="ngForm">
+						  (ngSubmit)="verifyForm.invalid ? '' : onVerify()" #verifyForm="ngForm">
 
 						<div class="field clearfix">
 							<div class="wrap-type-input">
@@ -12,19 +12,9 @@
 									<div>{{notice.message}}</div>
 								</div>
 								<div class="input-wrap name">
-									<label for="username">Username *</label>
-									<input type="text" tabindex="1" name="username" id="username" required
-										   [(ngModel)]="user.username" #username="ngModel" >
-									<div *ngIf="username.invalid && (username.dirty || username.touched || isSubmit)"
-										 class="error alert-danger">
-										<div *ngIf="username.errors.required">Name is required</div>
-										<div *ngIf="username.errors.forbiddenName">Name is required</div>
-									</div>
-								</div>
-								<div class="input-wrap name">
 									<label for="email">Email *</label>
 									<input type="text" value="" tabindex="1" name="email" id="email" required
-										   [(ngModel)]="user.email" #email="ngModel" appEmailValidator >
+										   [(ngModel)]="verificationDto.email" #email="ngModel" appEmailValidator>
 									<div *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)"
 										 class="error alert-danger">
 										<div *ngIf="email.errors.required">Email is required</div>
@@ -32,20 +22,21 @@
 									</div>
 								</div>
 								<div class="input-wrap name">
-									<label for="password">Password *</label>
-									<input type="password" tabindex="1" name="password" id="password" required
-										   [(ngModel)]="user.password" #password="ngModel" minlength="6" maxlength="30">
-									<div *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)"
-										 class="error alert-danger error-end">
-										<div *ngIf="password.errors.required">Password is required</div>
-										<div *ngIf="password.errors.minlength || password.errors.maxlength">Email must have 6 to 30 characters.</div>
+									<label for="email">Code *</label>
+									<input type="text" tabindex="1" name="activationDigest" id="activationDigest" required
+										   [(ngModel)]="verificationDto.activationDigest" #activationDigest="ngModel" minlength="{{lengthCode}}" maxlength="{{lengthCode}}">
+									<div *ngIf="activationDigest.invalid && (activationDigest.dirty || activationDigest.touched || isSubmit)"
+										 class="error alert-danger">
+										<div *ngIf="activationDigest.errors.required">Code is required</div>
+										<div *ngIf="activationDigest.errors.minlength || activationDigest.errors.maxlength">Code must have {{lengthCode}} characters.</div>
 									</div>
 								</div>
+
 							</div>
 						</div>
 						<div class="create-account"><p>You must complete required field to submit form.</p></div>
 						<div class="submit-wrap">
-							<button type="submit" (click)="isSubmit = true">register</button>
+							<button type="submit" (click)="isSubmit = true">verify account</button>
 						</div>
 						<div class="create-account">
 							<p>If you have account</p>

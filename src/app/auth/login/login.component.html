@@ -1,3 +1,44 @@
-<p>
-  login works!
-</p>
+<div class="flat-row pad-top90px">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="flat-login">
+					<form class="flat-contact-form border-white border-large" id="contactform5" method="post"
+						  action="http://themesflat.com/html/aquarius/contact/contact-process.php">
+						<div class="field clearfix">
+							<div class="wrap-type-input">
+								<div class="input-wrap name">
+									<label for="name">Username or email address *</label>
+									<input type="text" value="" tabindex="1" name="name" id="name" required>
+								</div>
+								<div class="input-wrap email">
+									<label for="name">Password *</label>
+									<input type="password" value="" tabindex="2" name="email" id="email-contact"
+										   required>
+								</div>
+							</div>
+						</div>
+						<div class="submit-wrap">
+							<button>login</button>
+						</div>
+						<div class="option-login">
+							<div class="remember">
+								<input type="checkbox" name="check3" id="check3" class="css-checkbox"
+									   checked="checked"/><label for="check3" class="css-label">Remember me</label>
+							</div>
+							<div class="forgot">
+								<a href="#">I forgot my password</a>
+							</div>
+						</div>
+						<div class="create-account">
+							<p>Not registered? No problem</p>
+							<div class="link-submit-wrap">
+								<a routerLink="/register">create an account</a>
+							</div>
+						</div>
+					</form><!-- /.comment-form -->
+				</div><!-- /.flat-login -->
+			</div><!-- /.col-md-6 .col-md-offset-3 -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</div>
