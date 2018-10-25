@@ -1,3 +1,6 @@
+import {Result} from "../entity/result";
+import {Observable} from "rxjs";
+
 export class Common {
 	static HOST = 'http://localhost:9000/api/v1';
 	static START_ASCII_NUMBER = 65;
@@ -14,4 +17,6 @@ export class Common {
 	static getStringUpperCaseFromIndex(index: number): string {
 		return String.fromCharCode(index + Common.START_ASCII_NUMBER);
 	}
+	
+	
 }

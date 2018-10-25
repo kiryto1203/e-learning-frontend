@@ -1,21 +1,28 @@
 import {Injectable} from '@angular/core';
 import {Log} from "./shared/entity/log";
+import {LogCallAPI} from "./shared/entity/log-call-api";
 
 @Injectable({
 	providedIn: 'root'
 })
 export class LogService {
-	log: Log[];
+	private _log: Log[];
+	private _logCallAPIs: LogCallAPI[];
 	
 	constructor() {
-		this.log = [];
+		this._log = [];
+		this._logCallAPIs = [];
 	}
 	
 	addLog(msg: any, content: any = null): void {
-		this.log.push(new Log(new Date(),msg, content));
+		this._log.push(new Log(new Date(),msg, content));
 	}
 	
 	getLogs(): Log[] {
-		return this.log;
+		return this._log;
+	}
+	
+	addLogCallAPIs(logCallAPI: LogCallAPI): void {
+		this._logCallAPIs.push(logCallAPI);
 	}
 }

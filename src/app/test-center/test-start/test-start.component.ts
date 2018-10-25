@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CommonInfo} from "../../shared/data/common-info";
 
 @Component({
 	selector: 'app-test-start',
@@ -7,6 +8,8 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TestStartComponent implements OnInit {
 	constructor() {
+		CommonInfo.PAGE_TITLE.title = "Welcome to examination.";
+		CommonInfo.PAGE_TITLE.pageName = "Start Page";
 	}
 	
 	ngOnInit() {

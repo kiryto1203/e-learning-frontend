@@ -9,6 +9,7 @@ import {LayoutFooterComponent} from './layout-footer/layout-footer.component';
 import {LayoutBottomComponent} from './layout-bottom/layout-bottom.component';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {AuthModule} from "../auth/auth.module";
+import {HomePageComponent} from "../home-page/home-page.component";
 
 @NgModule({
 	imports: [
@@ -24,6 +25,7 @@ import {AuthModule} from "../auth/auth.module";
 		LayoutFooterComponent,
 		LayoutBottomComponent,
 		PageNotFoundComponent,
+		HomePageComponent
 	],
 })
 export class LayoutModule {

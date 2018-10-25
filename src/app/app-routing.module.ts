@@ -6,7 +6,6 @@ import {SelectivePreLoadingStrategyService} from './selective-preloading-strateg
 
 const routes: Routes = [
 	{path: '', loadChildren: './layout/layout.module#LayoutModule' },
-	{path: 'test-center', loadChildren: './test-center/test-center.module#TestCenterModule', data: {preload: true}},
 	{path: '**', redirectTo: '/error/404', pathMatch: 'full'}
 ];
 

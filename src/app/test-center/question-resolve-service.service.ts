@@ -3,7 +3,6 @@ import {QuestionService} from './question.service';
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
 import {Question} from '../shared/entity/questions';
 import {EMPTY, Observable, of} from 'rxjs';
-import {mergeMap, take} from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,18 +12,19 @@ export class QuestionResolveServiceService implements Resolve<Question[]> {
 				private router: Router) {
 	}
 	
-	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Question[]> | Promise<Question[]> | Question[] {
-		return this.questionService.getQuestions().pipe(
-			take(1),
-			mergeMap(questions => {
-				if (questions) {
-					return of(questions);
-				} else {
-					this.router.navigate(['/examination']);
-					return EMPTY;
-				}
-			})
-		);
+	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Question[]> | Promise<Question[]> | Question[] | any {
+		this.questionService.getQuestions().then(questions => {
+			console.log(questions);
+			if (questions) {
+				return of(questions);
+			} else {
+				this.router.navigate(['/']);
+				return EMPTY;
+			}
+		}).catch(result => {
+			this.router.navigate(['/']);
+			return EMPTY;
+		});
 	}
 	
 }

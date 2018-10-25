@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {Router, RouterModule, Routes} from "@angular/router";
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from "@angular/router";
 import {LayoutComponent} from "./layout/layout.component";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {LoginComponent} from "../auth/login/login.component";
-import {RegisterComponent} from "../auth/register/register.component";
+import {HomePageComponent} from "../home-page/home-page.component";
 
 const layoutRoutes: Routes = [
-	{ path: '', component: LayoutComponent,
+	{
+		path: '', component: LayoutComponent,
 		children: [
-			{ path: '', loadChildren: '../auth/auth.module#AuthModule'},
-			{ path: 'error/404', component: PageNotFoundComponent },
-			{ path: 'login', component: LoginComponent },
-			{ path: 'register', component: RegisterComponent },
-		]},
+			{path: '', component: HomePageComponent},
+			{path: '', loadChildren: '../auth/auth.module#AuthModule'},
+			{path: 'test-center', loadChildren: '../test-center/test-center.module#TestCenterModule', data: {preload: true}},
+			{path: 'error/404', component: PageNotFoundComponent},
+		]
+	},
 ];
 
 @NgModule({
@@ -21,9 +22,10 @@ const layoutRoutes: Routes = [
 		CommonModule,
 		RouterModule.forChild(layoutRoutes),
 	],
-    declarations: [],
+	declarations: [],
 	exports: [
 		RouterModule
 	]
 })
-export class LayoutRoutingModule { }
+export class LayoutRoutingModule {
+}
