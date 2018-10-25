@@ -5,7 +5,6 @@
 				<div class="flat-login">
 					<form class="flat-contact-form border-white border-large"
 						  (ngSubmit)="registerForm.invalid ? '' : onRegister()" #registerForm="ngForm">
-
 						<div class="field clearfix">
 							<div class="wrap-type-input">
 								<div *ngIf="notice && isSubmit" class="{{notice.type}}">
@@ -18,7 +17,6 @@
 									<div *ngIf="username.invalid && (username.dirty || username.touched || isSubmit)"
 										 class="error alert-danger">
 										<div *ngIf="username.errors.required">Name is required</div>
-										<div *ngIf="username.errors.forbiddenName">Name is required</div>
 									</div>
 								</div>
 								<div class="input-wrap name">

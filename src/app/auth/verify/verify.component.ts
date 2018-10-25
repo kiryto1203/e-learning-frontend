@@ -35,8 +35,8 @@ export class VerifyComponent implements BaseLayoutComponent {
 		this.verificationDto.email = this.getEmail();
 	}
 	
-	getEmail() {
-		return atob(this.route.snapshot.paramMap.get("email"));
+	getEmail(): string {
+		return this.route.snapshot.paramMap.get("email") ? atob(this.route.snapshot.paramMap.get("email")) : "";
 	}
 	
 	onVerify() {

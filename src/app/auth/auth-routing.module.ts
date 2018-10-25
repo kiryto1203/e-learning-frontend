@@ -9,6 +9,7 @@ const authRoutes: Routes = [
 	{path: 'login', component: LoginComponent},
 	{path: 'register', component: RegisterComponent},
 	{path: 'verify/:email', component: VerifyComponent},
+	{path: 'verify', component: VerifyComponent},
 ];
 
 @NgModule({
