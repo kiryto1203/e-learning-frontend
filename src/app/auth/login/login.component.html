@@ -1,3 +1,57 @@
-<p>
-  login works!
-</p>
+<div class="flat-row pad-top90px">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="flat-login">
+					<form class="flat-contact-form border-white border-large"
+						  (ngSubmit)="loginForm.invalid ? '' : onLogin()" #loginForm="ngForm">
+						<div class="field clearfix">
+							<div class="wrap-type-input">
+								<div *ngIf="notice && isSubmit" class="{{notice.type}}">
+									<div>{{notice.message}}</div>
+								</div>
+								<div class="input-wrap name">
+									<label for="username">Username *</label>
+									<input type="text" tabindex="1" name="username" id="username" required
+										   [(ngModel)]="loginDto.username" #username="ngModel" >
+									<div *ngIf="username.invalid && (username.dirty || username.touched || isSubmit)"
+										 class="error alert-danger">
+										<div *ngIf="username.errors.required">Username is required</div>
+									</div>
+								</div>
+								<div class="input-wrap email">
+									<label for="password">Password *</label>
+									<input type="password" tabindex="1" name="password" id="password" required
+										   [(ngModel)]="loginDto.password" #password="ngModel" minlength="6" maxlength="30">
+									<div *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)"
+										 class="error alert-danger error-end">
+										<div *ngIf="password.errors.required">Password is required</div>
+										<div *ngIf="password.errors.minlength || password.errors.maxlength">Email must have 6 to 30 characters.</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="submit-wrap">
+							<button type="submit" (click)="isSubmit = true">login</button>
+						</div>
+						<div class="option-login">
+							<div class="remember">
+								<input type="checkbox" name="check3" id="check3" class="css-checkbox"
+									   checked="checked"/><label for="check3" class="css-label">Remember me</label>
+							</div>
+							<div class="forgot">
+								<a href="#">I forgot my password</a>
+							</div>
+						</div>
+						<div class="create-account">
+							<p>Not registered? No problem</p>
+							<div class="link-submit-wrap">
+								<a routerLink="/register">create an account</a>
+							</div>
+						</div>
+					</form><!-- /.comment-form -->
+				</div><!-- /.flat-login -->
+			</div><!-- /.col-md-6 .col-md-offset-3 -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</div>

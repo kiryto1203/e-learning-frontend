@@ -4,24 +4,23 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app/app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
-import {PageNotFoundComponent} from './layout/page-not-found/page-not-found.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
-import {AuthModule} from './auth/auth.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LayoutModule} from "./layout/layout.module";
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
 	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
 		FormsModule,
+		ReactiveFormsModule,
 		AppRoutingModule,
 		HttpClientModule,
-		AuthModule,
-		LayoutModule
+		LayoutModule,
+	
 	],
 	providers: [],
 	bootstrap: [AppComponent]
