@@ -1,11 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
-import {PageNotFoundComponent} from './layout/page-not-found/page-not-found.component';
 import {SelectivePreLoadingStrategyService} from './selective-preloading-strategy.service';
 
 const routes: Routes = [
-	{path: '', loadChildren: './layout/layout.module#LayoutModule' },
+	{path: '', loadChildren: './layout/layout.module#LayoutModule'},
 	{path: '**', redirectTo: '/error/404', pathMatch: 'full'}
 ];
 

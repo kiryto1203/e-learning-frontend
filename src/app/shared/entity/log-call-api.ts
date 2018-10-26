@@ -1,12 +1,4 @@
 export class LogCallAPI {
-	private _startTime: Date;
-	private _url: string;
-	private _body: any;
-	private _token: string;
-	private _response: any;
-	private _executedTime: number;
-	
-	
 	constructor(startTime: Date, url: string, body: any, token: string, response: any, executedTime: number) {
 		this._startTime = startTime;
 		this._url = url;
@@ -15,15 +7,19 @@ export class LogCallAPI {
 		this._response = response;
 		this._executedTime = executedTime;
 	}
-	
+
+	private _startTime: Date;
+
 	get startTime(): Date {
 		return this._startTime;
 	}
-	
+
 	set startTime(value: Date) {
 		this._startTime = value;
 	}
-	
+
+	private _url: string;
+
 	get url(): string {
 		return this._url;
 	}
@@ -31,6 +27,8 @@ export class LogCallAPI {
 	set url(value: string) {
 		this._url = value;
 	}
+	
+	private _body: any;
 	
 	get body(): any {
 		return this._body;
@@ -40,6 +38,8 @@ export class LogCallAPI {
 		this._body = value;
 	}
 	
+	private _token: string;
+	
 	get token(): string {
 		return this._token;
 	}
@@ -48,6 +48,8 @@ export class LogCallAPI {
 		this._token = value;
 	}
 	
+	private _response: any;
+	
 	get response(): any {
 		return this._response;
 	}
@@ -55,6 +57,8 @@ export class LogCallAPI {
 	set response(value: any) {
 		this._response = value;
 	}
+	
+	private _executedTime: number;
 	
 	get executedTime(): number {
 		return this._executedTime;

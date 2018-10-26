@@ -4,7 +4,7 @@ import {Common} from "../utility/common";
 
 export function emailValidator(emailRe: RegExp): ValidatorFn {
 	return (control: AbstractControl): ValidationErrors | null => {
-		return !emailRe.test(control.value) ? { 'email': { value: control.value }} : null;
+		return !emailRe.test(control.value) ? {'email': {value: control.value}} : null;
 	}
 }
 
@@ -13,14 +13,14 @@ export function emailValidator(emailRe: RegExp): ValidatorFn {
 	providers: [{provide: NG_VALIDATORS, useExisting: EmailValidatorDirective, multi: true}]
 })
 export class EmailValidatorDirective implements Validator {
+	constructor() {
+	}
+	
 	registerOnValidatorChange(fn: () => void): void {
 	}
 	
 	validate(control: AbstractControl): ValidationErrors | null {
 		return control.value ? emailValidator(new RegExp(Common.REGEXP_EMAIL, 'i'))(control) : null;
-	}
-	
-	constructor() {
 	}
 	
 }

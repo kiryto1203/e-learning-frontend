@@ -15,7 +15,7 @@ export class LogService {
 	}
 	
 	addLog(msg: any, content: any = null): void {
-		this._log.push(new Log(new Date(),msg, content));
+		this._log.push(new Log(new Date(), msg, content));
 	}
 	
 	getLogs(): Log[] {

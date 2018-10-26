@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Question} from '../../shared/entity/questions';
 import {QuestionService} from '../question.service';
 import {LocalstorageKey} from '../../shared/utility/localstorage-key';
@@ -19,17 +19,17 @@ export class ExaminationComponent implements OnInit {
 	questionParent: Question;
 	answers: AnswerUser[];
 	questionCodes: any[];
-
+	
 	constructor(private questionService: QuestionService,
-				private route: ActivatedRoute,
-				private logService: LogService) {
+	            private route: ActivatedRoute,
+	            private logService: LogService) {
 		this.order = 1;
 	}
-
+	
 	ngOnInit() {
 		this.getQuestion();
 	}
-
+	
 	getQuestion(): void {
 		this.route.data.subscribe((data: { questions: Question[] }) => {
 			this.questions = data.questions;
@@ -39,7 +39,7 @@ export class ExaminationComponent implements OnInit {
 			this.questionParent = this.questionService.getQuestionFromQuestionCode(this.questionCurrent.parent, this.questions);
 		});
 	}
-
+	
 	getAnswer(): AnswerUser[] {
 		const answersLocal = localStorage.getItem(LocalstorageKey.ANSWERS);
 		if (answersLocal) {

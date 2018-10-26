@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {CommonInfo} from "../data/common-info";
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor{
+export class TokenInterceptor implements HttpInterceptor {
 	
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		req = req.clone({
@@ -13,9 +13,7 @@ export class TokenInterceptor implements HttpInterceptor{
 			},
 			withCredentials: true
 		});
-		let nex = next.handle(req);
-		console.log(nex);
-		return nex;
+		return next.handle(req);
 	}
 	
 }

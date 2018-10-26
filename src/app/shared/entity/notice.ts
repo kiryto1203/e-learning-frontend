@@ -1,6 +1,10 @@
 export class Notice {
+	private constructor(type, message) {
+		this._type = type;
+		this._message = message;
+	}
+
 	private _type;
-	private _message;
 	
 	get type() {
 		return this._type;
@@ -9,6 +13,8 @@ export class Notice {
 	set type(value) {
 		this._type = value;
 	}
+	
+	private _message;
 	
 	get message() {
 		return this._message;
@@ -19,11 +25,6 @@ export class Notice {
 	}
 	
 	static getInstanceOf(_type, _message) {
-		return new Notice(_type,_message);
-	}
-	
-	private constructor(type, message) {
-		this._type = type;
-		this._message = message;
+		return new Notice(_type, _message);
 	}
 }

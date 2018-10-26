@@ -2,7 +2,6 @@ import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@ang
 import {Question} from '../../shared/entity/questions';
 import {QuestionService} from '../question.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {e} from "@angular/core/src/render3";
 import {LogService} from "../../log.service";
 
 @Component({
@@ -36,18 +35,18 @@ export class TestNavigateComponent implements OnInit {
 	distance: number;
 	unit: number;
 	orderCurrent: number;
-
+	
 	constructor(private questionService: QuestionService,
-				private logService: LogService) {
+	            private logService: LogService) {
 		this.unit = window.innerWidth <= 320 ? 50 : 80;
 		this.orderCurrent = 1;
 		this.actionNavigate = '';
 	}
-
+	
 	ngOnInit() {
-
+	
 	}
-
+	
 	handlePreviousQuestion(): void {
 		if (this.order === 1) {
 			return;
@@ -55,7 +54,7 @@ export class TestNavigateComponent implements OnInit {
 		this.order -= 1;
 		this.changeQuestionByOrder(this.order);
 	}
-
+	
 	handleNextQuestion(): void {
 		if (this.order === this.questionCodes.length) {
 			return;
@@ -63,7 +62,7 @@ export class TestNavigateComponent implements OnInit {
 		this.order += 1;
 		this.changeQuestionByOrder(this.order);
 	}
-
+	
 	changeQuestionByOrder(order: number): void {
 		this.orderChange.emit(order);
 		const questionCode = this.questionCodes[this.order - 1];
@@ -72,7 +71,7 @@ export class TestNavigateComponent implements OnInit {
 		this.questionParent = this.questionService.getQuestionFromQuestionCode(this.questionCurrent.parent, this.questions);
 		this.questionParentChange.emit(this.questionParent);
 	}
-
+	
 	changeDistance(): void {
 		let change = this.order - 2;
 		if (this.order === 1) {
@@ -83,7 +82,7 @@ export class TestNavigateComponent implements OnInit {
 		}
 		this.distance = -change * this.unit;
 	}
-
+	
 	getStateOrderChange(): string {
 		if (!this.checkNavigateChange()) {
 			return this.actionNavigate;
@@ -93,16 +92,20 @@ export class TestNavigateComponent implements OnInit {
 		this.changeDistance();
 		return this.actionNavigate;
 	}
-
+	
 	checkNavigateChange(): boolean {
 		return (this.order !== this.orderCurrent && this.order >= 2 && this.order <= this.questionCodes.length - 1)
 			|| (this.orderCurrent < this.questionCodes.length - 1 && this.order === this.questionCodes.length)
 			|| (this.orderCurrent > 2 && this.order === 1);
 	}
-
+	
 	@HostListener('document:keyup', ['$event'])
 	handleArrowButtonEvent(event: KeyboardEvent) {
-		if (event.keyCode === 39) { this.handleNextQuestion(); }
-		if (event.keyCode === 37) { this.handlePreviousQuestion(); }
+		if (event.keyCode === 39) {
+			this.handleNextQuestion();
+		}
+		if (event.keyCode === 37) {
+			this.handlePreviousQuestion();
+		}
 	}
 }
