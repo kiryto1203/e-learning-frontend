@@ -1,25 +1,21 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Question} from '../shared/entity/questions';
-import {Api} from '../shared/utility/api';
-import {LogService} from '../log.service';
-import {Common} from '../shared/utility/common';
-import {Result} from "../shared/entity/result";
-import {BaseService} from "../base-service";
-import {Router} from "@angular/router";
+import {Question} from '../entity/questions';
+import {Api} from '../utility/api';
+import {LogService} from './log.service';
+import {Common} from '../utility/common';
+import {Result} from "../entity/result";
 
 @Injectable({
 	providedIn: 'root'
 })
-export class QuestionService extends BaseService {
-	constructor(protected router: Router,
-	            private httpClient: HttpClient,
+export class QuestionService {
+	constructor(private httpClient: HttpClient,
 	            private logService: LogService) {
-		super(router);
 	}
 	
 	getQuestions(): Promise<Result<Question[]>> {
-		return this.handleResponse<Question[]>(this.httpClient.get<Result<Question[]>>(Api.GET_LESSON).toPromise());
+		return this.httpClient.get<Result<Question[]>>(Api.GET_LESSON).toPromise();
 	}
 	
 	getQuestionCodesFromQuestions(questions: Question[]): any[] {

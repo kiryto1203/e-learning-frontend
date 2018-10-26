@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Log} from "./shared/entity/log";
-import {LogCallAPI} from "./shared/entity/log-call-api";
+import {Log} from "../entity/log";
+import {LogCallAPI} from "../entity/log-call-api";
 
 @Injectable({
 	providedIn: 'root'

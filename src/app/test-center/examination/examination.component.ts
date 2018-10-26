@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Question} from '../../shared/entity/questions';
-import {QuestionService} from '../question.service';
+import {QuestionService} from '../../shared/service/question.service';
 import {LocalstorageKey} from '../../shared/utility/localstorage-key';
 import {AnswerUser} from '../../shared/entity/answer-user';
 import {ActivatedRoute} from '@angular/router';
 import {Common} from "../../shared/utility/common";
-import {LogService} from "../../log.service";
+import {LogService} from "../../shared/service/log.service";
 
 @Component({
 	selector: 'examination',

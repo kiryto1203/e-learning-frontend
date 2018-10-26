@@ -48,3 +48,5 @@ export const ERROR_CODE = {
 	"108": "CANNOT CONVERT JSON TO LIST",
 	"104": "ANSWER TOO LESS",
 };
+
+export const ERROR_COE_TOKEN = ['052','051'];

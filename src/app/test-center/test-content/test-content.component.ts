@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Question} from '../../shared/entity/questions';
 import {RouterModule} from '@angular/router';
-import {LogService} from '../../log.service';
+import {LogService} from '../../shared/service/log.service';
 import {Common} from '../../shared/utility/common';
 import {AnswerUser} from '../../shared/entity/answer-user';
 import {Answer} from '../../shared/entity/answer';

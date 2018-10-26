@@ -1,8 +1,8 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {Question} from '../../shared/entity/questions';
-import {QuestionService} from '../question.service';
+import {QuestionService} from '../../shared/service/question.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {LogService} from "../../log.service";
+import {LogService} from "../../shared/service/log.service";
 
 @Component({
 	selector: 'app-test-navigate',

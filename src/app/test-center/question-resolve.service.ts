@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {QuestionService} from './question.service';
+import {QuestionService} from '../shared/service/question.service';
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
 import {Question} from '../shared/entity/questions';
 import {EMPTY, Observable, of} from 'rxjs';
@@ -7,7 +7,7 @@ import {EMPTY, Observable, of} from 'rxjs';
 @Injectable({
 	providedIn: 'root'
 })
-export class QuestionResolveServiceService implements Resolve<Question[]> {
+export class QuestionResolveService implements Resolve<Question[]> {
 	constructor(private questionService: QuestionService,
 	            private router: Router) {
 	}

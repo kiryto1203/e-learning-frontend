@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {BaseLayoutComponent} from "../../layout/base-layout-component";
 import {CommonInfo, CommonInfoJSON} from "../../shared/data/common-info";
-import {AuthService} from "../auth.service";
+import {AuthService} from "../../shared/service/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoginDto} from "../../shared/entity/login-dto";
 import {ResultCode} from "../../shared/utility/result-code";
 import {Notice} from "../../shared/entity/notice";
 import {NoticeType} from "../../shared/utility/NoticeType";
 import {ERROR_CODE} from "../../shared/utility/error-code";
-import {LogService} from "../../log.service";
+import {LogService} from "../../shared/service/log.service";
 import {Result} from "../../shared/entity/result";
 import {NotifierService} from "angular-notifier";
 import {LocalstorageKey} from "../../shared/utility/localstorage-key";
@@ -18,16 +18,17 @@ import {LocalstorageKey} from "../../shared/utility/localstorage-key";
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements BaseLayoutComponent {
+export class LoginComponent extends BaseLayoutComponent {
 	loginDto: LoginDto;
 	isSubmit: boolean;
 	notice: Notice;
 	
 	constructor(private authService: AuthService,
-	            private router: Router,
+	            protected router: Router,
 	            private route: ActivatedRoute,
 	            private logService: LogService,
-	            private notifier: NotifierService) {
+	            protected notifier: NotifierService) {
+		super(router,notifier);
 		CommonInfo.PAGE_TITLE.title = "Login to E-Learning system.";
 		CommonInfo.PAGE_TITLE.pageName = "Login";
 		CommonInfo.PAGE_TITLE.isShow = true;

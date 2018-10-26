@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Question} from '../../shared/entity/questions';
-import {QuestionService} from '../question.service';
+import {QuestionService} from '../../shared/service/question.service';
 import {AnswerUser} from '../../shared/entity/answer-user';
 
 @Component({
