@@ -23,12 +23,18 @@
 								</div>
 								<div class="input-wrap name">
 									<label for="email">Code *</label>
-									<input type="text" tabindex="1" name="activationDigest" id="activationDigest" required
-										   [(ngModel)]="verificationDto.activationDigest" #activationDigest="ngModel" minlength="{{lengthCode}}" maxlength="{{lengthCode}}">
-									<div *ngIf="activationDigest.invalid && (activationDigest.dirty || activationDigest.touched || isSubmit)"
-										 class="error alert-danger">
+									<input type="text" tabindex="1" name="activationDigest" id="activationDigest"
+										   required
+										   [(ngModel)]="verificationDto.activationDigest" #activationDigest="ngModel"
+										   minlength="{{lengthCode}}" maxlength="{{lengthCode}}">
+									<div
+										*ngIf="activationDigest.invalid && (activationDigest.dirty || activationDigest.touched || isSubmit)"
+										class="error alert-danger">
 										<div *ngIf="activationDigest.errors.required">Code is required</div>
-										<div *ngIf="activationDigest.errors.minlength || activationDigest.errors.maxlength">Code must have {{lengthCode}} characters.</div>
+										<div
+											*ngIf="activationDigest.errors.minlength || activationDigest.errors.maxlength">
+											Code must have {{lengthCode}} characters.
+										</div>
 									</div>
 								</div>
 

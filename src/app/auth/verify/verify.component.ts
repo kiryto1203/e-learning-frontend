@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {User} from "../../shared/entity/user";
 import {BaseLayoutComponent} from "../../layout/base-layout-component";
 import {Notice} from "../../shared/entity/notice";
 import {Common} from "../../shared/utility/common";
@@ -27,6 +26,7 @@ export class VerifyComponent implements BaseLayoutComponent {
 	            private router: Router) {
 		CommonInfo.PAGE_TITLE.title = "Verify account.";
 		CommonInfo.PAGE_TITLE.pageName = "Verify";
+		CommonInfo.PAGE_TITLE.isShow = true;
 		this.verificationDto = new VerificationDto();
 		this.lengthCode = Common.DEFAULT_RANDOM_CHARACTER_LENGTH;
 	}
@@ -42,11 +42,13 @@ export class VerifyComponent implements BaseLayoutComponent {
 	onVerify() {
 		this.verificationDto.activatedAt = new Date();
 		this.authService.verify(this.verificationDto).subscribe(result => {
-			if(result.code !== ResultCode.OK)
-				this.notice = Notice.getInstanceOf(NoticeType.DANGER,ERROR_CODE[result.code]);
+			if (result.code !== ResultCode.OK)
+				this.notice = Notice.getInstanceOf(NoticeType.DANGER, ERROR_CODE[result.code]);
 			else {
-				this.notice = Notice.getInstanceOf(NoticeType.SUCCESS,"Verify user success.");
-				setTimeout(() => { this.router.navigate(['/login']) },2000);
+				this.notice = Notice.getInstanceOf(NoticeType.SUCCESS, "Verify user success.");
+				setTimeout(() => {
+					this.router.navigate(['/login'])
+				}, 2000);
 			}
 		})
 	}

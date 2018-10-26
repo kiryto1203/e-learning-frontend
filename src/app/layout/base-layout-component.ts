@@ -1,4 +1,4 @@
 import {OnInit} from "@angular/core";
 
-export interface BaseLayoutComponent extends OnInit{
+export interface BaseLayoutComponent extends OnInit {
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {PageTitle} from "../../shared/entity/page-title";
 import {BaseLayoutComponent} from "../base-layout-component";
 import {CommonInfo} from "../../shared/data/common-info";
@@ -10,6 +10,7 @@ import {CommonInfo} from "../../shared/data/common-info";
 })
 export class LayoutComponent implements BaseLayoutComponent {
 	pageTitle: PageTitle;
+	
 	constructor() {
 		this.pageTitle = CommonInfo.PAGE_TITLE;
 	}

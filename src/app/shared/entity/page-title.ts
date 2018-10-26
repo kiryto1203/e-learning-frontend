@@ -1,25 +1,22 @@
 export class PageTitle {
+	constructor(title: string, pageName: string, imageLink: string, isShow: boolean = true) {
+		this._title = title;
+		this._pageName = pageName;
+		this._imageLink = imageLink;
+		this._isShow = isShow;
+	}
+
 	private _title: string;
-	private _pageName: string;
-	private _imageLink: string;
-	private _isShow: boolean;
-	
-	
-	get isShow(): boolean {
-		return this._isShow;
-	}
-	
-	set isShow(value: boolean) {
-		this._isShow = value;
-	}
-	
+
 	get title(): string {
 		return this._title;
 	}
-	
+
 	set title(value: string) {
 		this._title = value;
 	}
+	
+	private _pageName: string;
 	
 	get pageName(): string {
 		return this._pageName;
@@ -29,6 +26,8 @@ export class PageTitle {
 		this._pageName = value;
 	}
 	
+	private _imageLink: string;
+	
 	get imageLink(): string {
 		return this._imageLink;
 	}
@@ -37,11 +36,13 @@ export class PageTitle {
 		this._imageLink = value;
 	}
 	
+	private _isShow: boolean;
 	
-	constructor(title: string, pageName: string, imageLink: string, isShow: boolean = true) {
-		this._title = title;
-		this._pageName = pageName;
-		this._imageLink = imageLink;
-		this._isShow = isShow;
+	get isShow(): boolean {
+		return this._isShow;
+	}
+	
+	set isShow(value: boolean) {
+		this._isShow = value;
 	}
 }

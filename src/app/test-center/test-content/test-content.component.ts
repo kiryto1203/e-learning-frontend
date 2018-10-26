@@ -18,27 +18,27 @@ export class TestContentComponent implements OnInit {
 	@Input() order: number;
 	@Input() answers: AnswerUser[];
 	@Output() answersChange = new EventEmitter<AnswerUser[]>();
-
+	
 	constructor(private route: RouterModule,
-				private logService: LogService) {
+	            private logService: LogService) {
 	}
-
+	
 	ngOnInit() {
 	}
-
+	
 	getTitleForAnswerFromIndex(index: number): string {
 		return Common.getStringUpperCaseFromIndex(index);
 	}
-
+	
 	isChooseQuestion() {
 		return this.questionCurrent.type !== Common.Q_TYPE_ENTER;
 	}
-
+	
 	isAnswerUser(answer: Answer): boolean {
 		const answerUserCurrent = this.answers.find(w => w.questionCode === this.questionCurrent.question_code);
 		return answerUserCurrent.answer.includes(answer.answer_id);
 	}
-
+	
 	handleChooseAnswer(answer: Answer): void {
 		const index = this.getIndexAnswerByQuestionCodeCurrent();
 		if (this.questionCurrent.type === Common.Q_TYPE_CHOOSE_ONE) {
@@ -54,19 +54,21 @@ export class TestContentComponent implements OnInit {
 		this.answersChange.emit(this.answers);
 		localStorage.setItem(LocalstorageKey.ANSWERS, JSON.stringify(this.answers));
 	}
-
+	
 	getAnswerUser(): string {
 		return this.answers.find(w => w.questionCode === this.questionCurrent.question_code).answer;
 	}
-
+	
 	handleEnterAnswer(e): void {
 		const index = this.getIndexAnswerByQuestionCodeCurrent();
-		if (this.questionCurrent.type !== Common.Q_TYPE_ENTER) { this.logService.addLog('Enter answer with invalid question type'); }
+		if (this.questionCurrent.type !== Common.Q_TYPE_ENTER) {
+			this.logService.addLog('Enter answer with invalid question type');
+		}
 		this.answers[index].answer = e.target.value;
 		this.answersChange.emit(this.answers);
 		localStorage.setItem(LocalstorageKey.ANSWERS, JSON.stringify(this.answers));
 	}
-
+	
 	getIndexAnswerByQuestionCodeCurrent() {
 		return this.answers.findIndex(w => w.questionCode === this.questionCurrent.question_code);
 	}

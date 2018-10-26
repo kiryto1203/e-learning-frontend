@@ -9,7 +9,7 @@ import {EMPTY, Observable, of} from 'rxjs';
 })
 export class QuestionResolveServiceService implements Resolve<Question[]> {
 	constructor(private questionService: QuestionService,
-				private router: Router) {
+	            private router: Router) {
 	}
 	
 	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Question[]> | Promise<Question[]> | Question[] | any {

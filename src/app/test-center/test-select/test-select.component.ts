@@ -50,17 +50,17 @@ export class TestSelectComponent implements OnInit {
 	changeProgress: string;
 	distance: number;
 	noOfQuestionComplete: number;
-
+	
 	constructor(private questionService: QuestionService) {
 		this.isShowOption = false;
 		this.changeProgress = '';
 		this.noOfQuestionComplete = 0;
 	}
-
+	
 	ngOnInit() {
 		this.distance = this.noOfQuestionComplete * (100 / this.questionCodes.length);
 	}
-
+	
 	handleSelect(questionCode): void {
 		this.questionCurrent = this.questions.find(w => w.question_code === questionCode);
 		this.order = this.questionCodes.findIndex(w => w === questionCode) + 1;
@@ -69,27 +69,31 @@ export class TestSelectComponent implements OnInit {
 		this.questionParentChange.emit(this.questionService.getQuestionFromQuestionCode(this.questionCurrent.parent, this.questions));
 		this.showOption();
 	}
-
+	
 	showOption(): void {
 		this.isShowOption = !this.isShowOption;
 	}
-
+	
 	getStateChangeProgress(): string {
-		if (this.noOfQuestionComplete === this.getNoOfQuestionComplete(this.answers)) { return this.changeProgress; }
+		if (this.noOfQuestionComplete === this.getNoOfQuestionComplete(this.answers)) {
+			return this.changeProgress;
+		}
 		this.changeProgress = !this.changeProgress ? 'change' : '';
 		this.noOfQuestionComplete = this.getNoOfQuestionComplete(this.answers);
 		this.distance = this.noOfQuestionComplete * (100 / this.questionCodes.length);
 		return this.changeProgress;
 	}
-
+	
 	isDone(questionCode: any) {
-		return this.answers.find(w  => w.questionCode === questionCode).answer.length > 0;
+		return this.answers.find(w => w.questionCode === questionCode).answer.length > 0;
 	}
-
+	
 	getNoOfQuestionComplete(answers: AnswerUser[]): number {
 		let count = 0;
 		answers.forEach(w => {
-			if (w.answer.length > 0) { count++; }
+			if (w.answer.length > 0) {
+				count++;
+			}
 		});
 		return count;
 	}

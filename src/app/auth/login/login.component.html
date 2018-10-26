@@ -13,7 +13,7 @@
 								<div class="input-wrap name">
 									<label for="username">Username *</label>
 									<input type="text" tabindex="1" name="username" id="username" required
-										   [(ngModel)]="loginDto.username" #username="ngModel" >
+										   [(ngModel)]="loginDto.username" #username="ngModel">
 									<div *ngIf="username.invalid && (username.dirty || username.touched || isSubmit)"
 										 class="error alert-danger">
 										<div *ngIf="username.errors.required">Username is required</div>
@@ -22,11 +22,14 @@
 								<div class="input-wrap email">
 									<label for="password">Password *</label>
 									<input type="password" tabindex="1" name="password" id="password" required
-										   [(ngModel)]="loginDto.password" #password="ngModel" minlength="6" maxlength="30">
+										   [(ngModel)]="loginDto.password" #password="ngModel" minlength="6"
+										   maxlength="30">
 									<div *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)"
 										 class="error alert-danger error-end">
 										<div *ngIf="password.errors.required">Password is required</div>
-										<div *ngIf="password.errors.minlength || password.errors.maxlength">Email must have 6 to 30 characters.</div>
+										<div *ngIf="password.errors.minlength || password.errors.maxlength">Email must
+											have 6 to 30 characters.
+										</div>
 									</div>
 								</div>
 							</div>

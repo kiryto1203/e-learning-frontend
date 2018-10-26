@@ -11,7 +11,11 @@ const layoutRoutes: Routes = [
 		children: [
 			{path: '', component: HomePageComponent},
 			{path: '', loadChildren: '../auth/auth.module#AuthModule'},
-			{path: 'test-center', loadChildren: '../test-center/test-center.module#TestCenterModule', data: {preload: true}},
+			{
+				path: 'test-center',
+				loadChildren: '../test-center/test-center.module#TestCenterModule',
+				data: {preload: true}
+			},
 			{path: 'error/404', component: PageNotFoundComponent},
 		]
 	},

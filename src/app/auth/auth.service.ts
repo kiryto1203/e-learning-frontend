@@ -29,7 +29,7 @@ export class AuthService {
 	
 	login(loginDto: LoginDto): Observable<Result<string>> {
 		this.logService.addLog("call api login account", loginDto);
-		return this.httpClient.post<Result<string>>(Api.LOGIN,loginDto);
+		return this.httpClient.post<Result<string>>(Api.LOGIN, loginDto);
 	}
 }
 
