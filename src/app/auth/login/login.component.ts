@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {BaseLayoutComponent} from "../../layout/base-layout-component";
-import {CommonInfo} from "../../shared/data/common-info";
+import {CommonInfo, CommonInfoJSON} from "../../shared/data/common-info";
 import {AuthService} from "../auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoginDto} from "../../shared/entity/login-dto";
@@ -11,6 +11,7 @@ import {ERROR_CODE} from "../../shared/utility/error-code";
 import {LogService} from "../../log.service";
 import {Result} from "../../shared/entity/result";
 import {NotifierService} from "angular-notifier";
+import {LocalstorageKey} from "../../shared/utility/localstorage-key";
 
 @Component({
 	selector: 'app-login',
@@ -44,8 +45,7 @@ export class LoginComponent implements BaseLayoutComponent {
 				this.notice = Notice.getInstanceOf(NoticeType.DANGER, ERROR_CODE[result.code]);
 			else {
 				this.logService.addLog("Login success", result);
-				CommonInfo.TOKEN = result.data;
-				CommonInfo.IS_LOGIN = true;
+				this.saveToken(result.data);
 				this.notifier.notify(NoticeType.SUCCESS_ALERT,`Login ${this.loginDto.username} account success!`);
 				this.router.navigate(['/']);
 			}
@@ -60,4 +60,12 @@ export class LoginComponent implements BaseLayoutComponent {
 		}, 3000);
 	}
 	
+	private saveToken(token): void {
+		CommonInfo.TOKEN = token;
+		CommonInfo.IS_LOGIN = true;
+		let commonInfoJson = new CommonInfoJSON();
+		commonInfoJson.token = token;
+		commonInfoJson.isLogin = true;
+		localStorage.setItem(LocalstorageKey.COMMON_INFO,JSON.stringify(commonInfoJson));
+	}
 }

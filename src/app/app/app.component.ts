@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {CommonInfo} from "../shared/data/common-info";
 
 @Component({
 	selector: 'app-root',
@@ -7,4 +8,8 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
 	title = 'elearning';
+	
+	constructor() {
+		CommonInfo.initialize();
+	}
 }
