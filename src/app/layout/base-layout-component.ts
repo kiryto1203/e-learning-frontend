@@ -23,4 +23,10 @@ export class BaseLayoutComponent implements OnInit {
 			CommonInfo.TOKEN = '';
 		}
 	}
+	
+	protected setPageTitle(title, pageName, isShow = true) {
+		CommonInfo.PAGE_TITLE.title = title;
+		CommonInfo.PAGE_TITLE.pageName = pageName;
+		CommonInfo.PAGE_TITLE.isShow = isShow;
+	}
 }
