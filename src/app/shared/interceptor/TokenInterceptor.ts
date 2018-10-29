@@ -9,7 +9,8 @@ export class TokenInterceptor implements HttpInterceptor {
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		req = req.clone({
 			setHeaders: {
-				Authorization: `Bearer ${CommonInfo.TOKEN}`,
+				'Authorization': `Bearer ${CommonInfo.TOKEN}`,
+				'Content-Type': "application/json"
 			},
 			withCredentials: true
 		});

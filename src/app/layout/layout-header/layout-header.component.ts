@@ -6,11 +6,16 @@ import {Component, OnInit} from '@angular/core';
 	styleUrls: ['./layout-header.component.css']
 })
 export class LayoutHeaderComponent implements OnInit {
-	
+	isSearchBoxEnable: boolean;
 	constructor() {
+		this.isSearchBoxEnable = false;
 	}
 	
 	ngOnInit() {
+	}
+	
+	handleClickSearchBox(): void {
+		this.isSearchBoxEnable = !this.isSearchBoxEnable;
 	}
 	
 }

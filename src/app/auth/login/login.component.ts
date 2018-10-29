@@ -12,6 +12,7 @@ import {LogService} from "../../shared/service/log.service";
 import {Result} from "../../shared/entity/result";
 import {NotifierService} from "angular-notifier";
 import {LocalstorageKey} from "../../shared/utility/localstorage-key";
+import {UserService} from "../../shared/service/user.service";
 
 @Component({
 	selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent extends BaseLayoutComponent {
 	            protected router: Router,
 	            private route: ActivatedRoute,
 	            private logService: LogService,
-	            protected notifier: NotifierService) {
+	            protected notifier: NotifierService,
+	            private userService: UserService) {
 		super(router,notifier);
 		CommonInfo.PAGE_TITLE.title = "Login to E-Learning system.";
 		CommonInfo.PAGE_TITLE.pageName = "Login";
@@ -69,4 +71,13 @@ export class LoginComponent extends BaseLayoutComponent {
 		commonInfoJson.isLogin = true;
 		localStorage.setItem(LocalstorageKey.COMMON_INFO,JSON.stringify(commonInfoJson));
 	}
+	getCurrentUser(token: string): void {
+		this.userService.getCurrentUser(token).then(result => {
+			if(result.code !== ResultCode.OK) this.notifier.notify(NoticeType.DANGER_ALERT,"Can't get current user info.");
+			else CommonInfo.CURRENT_USER = result.data;
+		}).catch(error => {
+			this.notifier.notify(NoticeType.DANGER_ALERT,"Can't get current user info.");
+		});
+	}
+	
 }

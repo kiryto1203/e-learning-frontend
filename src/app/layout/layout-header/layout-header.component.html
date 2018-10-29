@@ -75,7 +75,23 @@
 			</div><!-- /.row -->
 		</div><!-- /.container -->
 		<div class="show-search">
-			<a href="#"><i class="fa fa-search"></i></a>
+			<a (click)="handleClickSearchBox()"><i class="fa fa-search"></i></a>
 		</div><!-- /.show-search -->
+		<div class="nav-search">
+			<div class="container">
+				<div class="col-md-12">
+					<div class="top-search {{isSearchBoxEnable ? 'show' : ''}}">
+						<aside id="search-4" class="widget widget_search">
+							<form role="search" method="get" class="search-form">
+								<label>
+									<input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+								</label>
+								<input type="submit" class="search-submit" value="Search">
+							</form>
+						</aside>
+					</div><!-- /.top-search -->
+				</div>
+			</div>
+		</div><!-- /.nav-search -->
 	</div><!-- /.header-inner -->
 </header><!-- /.header -->

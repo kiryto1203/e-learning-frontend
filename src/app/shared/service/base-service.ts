@@ -1,4 +1,6 @@
+import {HttpClient} from "@angular/common/http";
+
 export class BaseService {
-	constructor() {
+	constructor(protected httpClient: HttpClient) {
 	}
 }

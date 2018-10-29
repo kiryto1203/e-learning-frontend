@@ -7,4 +7,5 @@ export class Api {
 	static LOGIN = `${Common.HOST}/login`;
 	static VERIFY = `${Common.HOST}/verify`;
 	static GET_QUESTION = `${Common.HOST}/categories`;
+	static GET_CURRENT_USER = `${Common.HOST}/user/current`;
 }
