@@ -3,7 +3,7 @@ export class Pager<T> {
 	private _noOfRowInPage: number;
 	private _totalRow: number;
 	private _totalPage: number;
-	private _results: T;
+	private _results: T[];
 	
 	
 	get currentPage(): number {
@@ -38,11 +38,11 @@ export class Pager<T> {
 		this._totalPage = value;
 	}
 	
-	get results(): T {
+	get results(): T[] {
 		return this._results;
 	}
 	
-	set results(value: T) {
+	set results(value: T[]) {
 		this._results = value;
 	}
 }

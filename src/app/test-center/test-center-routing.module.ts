@@ -14,7 +14,7 @@ const testCenterRoutes: Routes = [
 		children: [
 			{path: '', component: TestStartComponent, resolve: {categories: TestResolveService}},
 			{path: 'start', component: TestStartComponent},
-			{path: 'examination', component: ExaminationComponent, resolve: {questions: QuestionResolveService}},
+			{path: 'examination/:subCategoryCode', component: ExaminationComponent, resolve: {questions: QuestionResolveService}},
 			{path: 'end', component: TestEndComponent}
 		]
 	},

@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {CommonInfo} from "../data/common-info";
+import {CommonInfo, CommonInfoJSON} from "../data/common-info";
+import {LocalstorageKey} from "../utility/localstorage-key";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -9,7 +10,7 @@ export class TokenInterceptor implements HttpInterceptor {
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		req = req.clone({
 			setHeaders: {
-				'Authorization': `Bearer ${CommonInfo.TOKEN}`,
+				'Authorization': `Bearer ${this.getToken()}`,
 				'Content-Type': "application/json"
 			},
 			withCredentials: true
@@ -17,4 +18,11 @@ export class TokenInterceptor implements HttpInterceptor {
 		return next.handle(req);
 	}
 	
+	private getToken(): string {
+		if(CommonInfo.TOKEN) return CommonInfo.TOKEN;
+		let localData = localStorage.getItem(LocalstorageKey.COMMON_INFO);
+		if(!localData) return "";
+		return (Object.assign(new CommonInfoJSON(), JSON.parse(localData)) as CommonInfoJSON).token;
+		
+	}
 }

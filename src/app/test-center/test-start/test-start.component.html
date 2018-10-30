@@ -1,24 +1,10 @@
-<div class="start">
-	<div class="rules">
-		<h3>Note:</h3>
-		<p> - The test will start when you press the start button.</p>
-		<p>- Lorem ipsum</p>
-		<p>- Lorem ipsum</p>
-		<p>- Lorem ipsum</p>
-		<p>- Lorem ipsum</p>
-		<p>- Lorem ipsum</p>
-		<p>- Lorem ipsum</p>
-	</div>
-	<button class="btn-start" routerLink="/test-center/examination">Start</button>
-</div>
-
 <section class="flat-row parallax parallax3">
 	<div class="overlay"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<div class="title-section cl-white">
-					<h1 class="title">Search For Courses</h1>
+					<h1 class="title">Search For Question Type</h1>
 					<div class="desc">
 						<p>Vut sagittis a, magna ridiculus! Scelerisque parturient! Cum duis nunc in, dignissim, porta
 							porta enim, proin<br> turpis egestas! Mauris dapibus sed integer placerat, scelerisque!</p>
@@ -30,39 +16,47 @@
 				</div>
 
 				<!-- Fillter courses -->
-				<form class="flat-contact-form fillter-courses border-radius border-white text-center" id="contactform5"
-					  method="post" action="http://themesflat.com/html/aquarius/contact/contact-process.php">
+				<form class="flat-contact-form fillter-courses border-radius border-white text-center" #testForm="ngForm">
 					<div class="field clearfix">
-						<div class="wrap-type-input">
+						<div class="wrap-type-input" style="display: inline-flex">
 							<div class="wrap categories-courses">
-								<select class="select-field" name="appointment_services">
-									<option value="" selected="selected">All categories</option>
-									<option value="Categories 1">Categories 1</option>
-									<option value="Categories 2"> Categories 2</option>
-									<option value="Categories 3"> Categories 3</option>
+								<select class="select-field" name="appointment_services" title="Choose categories"
+									[(ngModel)]="categoryCode" (change)="subCategory = ''">
+									<option value="" selected="selected">Choose categories</option>
+									<option *ngFor="let category of categories" value="{{category.categoryCode}}">{{category.categoryCode}}</option>
 								</select>
 							</div><!-- /.wrap-select -->
 
 							<div class="wrap courses-level">
-								<select class="select-field" name="appointment_services">
-									<option value="" selected="selected">Courses level</option>
-									<option value="Level 1">Level 1</option>
-									<option value="Level 2">Level 2</option>
-									<option value="Level 3">Level 3</option>
+								<select class="select-field" name="appointment_services" title="Choose level"
+										[(ngModel)]="subCategory">
+									<option value="" selected="selected">Choose categories</option>
+									<option *ngFor="let subCategoryName of getCategory().subcategoriesName; let i = index"
+											value="{{getCategory().subcategoriesCode[i]}}" >
+										{{subCategoryName}}
+									</option>
 								</select>
 							</div><!-- /.wrap-select -->
 
-							<div class="wrap courses-keyword">
-								<input type="text" value="" placeholder="Courses keyword" name="subject-flat"
-									   id="subject-flat">
-							</div>
+							<!--<div class="wrap courses-keyword">-->
+								<!--<input type="text" value="" placeholder="Courses keyword" name="subject-flat"-->
+									   <!--id="subject-flat">-->
+							<!--</div>-->
 
 							<div class="wrap all-categories">
-								<button>All categories</button>
+								<button (click)="handleStartExamination()">Start Examination</button>
 							</div>
 						</div><!-- /.wrap-type-input -->
+
 					</div><!-- /.field -->
 				</form><!-- /.comment-form -->
+
+				<div class="title-section cl-white clearfix">
+					<h1 class="title" style="font-size: 30px">{{getCategory().categoryCode}}</h1>
+					<div class="desc">
+						<p>{{getCategory().categoryIntro}}</p>
+					</div>
+				</div><!-- /.title-section -->
 			</div><!-- /.col-md-12 -->
 		</div><!-- /.row -->
 	</div><!-- /.container -->

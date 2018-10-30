@@ -17,6 +17,7 @@ export class CommonInfo {
 		this.TOKEN = commonInfoJson.token;
 		this.CURRENT_USER = commonInfoJson.currentUser;
 		this.TIME_EXPIRED = commonInfoJson.timeExpired;
+		console.log(this.IS_LOGIN, this.TOKEN);
 	}
 	
 	static PAGE_TITLE: PageTitle = new PageTitle('Welcome to E-learning', 'Page', '/bg-parallax1.jpg');

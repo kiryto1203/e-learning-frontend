@@ -15,6 +15,7 @@ export abstract class BaseResolveService<T> implements Resolve<T>{
 	abstract resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<T> | Promise<T> | T | any;
 	
 	protected checkToken(result: Result<any>): boolean {
+		console.log(result);
 		if (ERROR_COE_TOKEN.includes(result.code)) {
 			this.notifier.notify(NoticeType.DANGER_ALERT, "You must login to use this feature.");
 			this.router.navigate(['/login']);
