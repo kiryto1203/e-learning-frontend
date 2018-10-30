@@ -15,10 +15,12 @@ export class BaseLayoutComponent implements OnInit {
 		
 	}
 	
-	protected checkToken(result: Result<any>): void {
+	protected checkToken(result: Result<any>, isRequired = true): void {
 		if (ERROR_COE_TOKEN.includes(result.code)) {
-			this.notifier.notify(NoticeType.DANGER_ALERT, ERROR_CODE[result.code]);
-			this.router.navigate(['/login']);
+			if(isRequired) {
+				this.notifier.notify(NoticeType.DANGER_ALERT, ERROR_CODE[result.code]);
+				this.router.navigate(['/login']);
+			}
 			CommonInfo.IS_LOGIN = false;
 			CommonInfo.TOKEN = '';
 		}
