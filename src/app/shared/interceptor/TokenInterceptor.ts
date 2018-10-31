@@ -8,10 +8,11 @@ import {LocalstorageKey} from "../utility/localstorage-key";
 export class TokenInterceptor implements HttpInterceptor {
 	
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+		let contentType = req.headers.get("Content-Type");
 		req = req.clone({
 			setHeaders: {
 				'Authorization': `Bearer ${this.getToken()}`,
-				'Content-Type': "application/json"
+				'Content-Type': contentType ? contentType : "application/json",
 			},
 			withCredentials: true
 		});

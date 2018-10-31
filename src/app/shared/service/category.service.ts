@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Result} from "../entity/result";
 import {Pager} from "../entity/Pager";
-import {Category} from "../entity/Category";
+import {Category} from "../entity/category";
 import {Api} from "../utility/api";
 
 @Injectable({

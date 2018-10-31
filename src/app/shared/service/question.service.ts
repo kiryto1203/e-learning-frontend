@@ -5,6 +5,7 @@ import {Api} from '../utility/api';
 import {LogService} from './log.service';
 import {Common} from '../utility/common';
 import {Result} from "../entity/result";
+import {LessonReportDto} from "../entity/lesson-report-dto";
 
 @Injectable({
 	providedIn: 'root'
@@ -18,20 +19,18 @@ export class QuestionService {
 		return this.httpClient.get<Result<Question[]>>(Api.GET_LESSON).toPromise();
 	}
 	
-	getQuestionCodesFromQuestions(questions: Question[]): any[] {
-		if (!questions.length) {
-			return [];
-		}
+	getQuestionCodesFromQuestions(questions: LessonReportDto[]): any[] {
+		if (!questions.length) return [];
 		const result = [];
 		questions.forEach(v => {
-			if (v.type !== Common.Q_TYPE_PARAGRAPH) {
-				result.push(v.question_code);
+			if (v.questionType !== Common.Q_TYPE_PARAGRAPH) {
+				result.push(v.lessionReportId.lessionReportQuestionCode);
 			}
 		});
 		return result;
 	}
 	
-	getQuestionFromQuestionCode(questionCode: string, questions: Question[]): Question {
-		return questions.find(w => w.question_code === questionCode);
+	getQuestionFromQuestionCode(questionCode: string, questions: LessonReportDto[]): LessonReportDto {
+		return questions.find(w => w.lessionReportId.lessionReportQuestionCode === questionCode);
 	}
 }

@@ -6,6 +6,8 @@ import {Common} from '../../shared/utility/common';
 import {AnswerUser} from '../../shared/entity/answer-user';
 import {Answer} from '../../shared/entity/answer';
 import {LocalstorageKey} from '../../shared/utility/localstorage-key';
+import {LessonReportDto} from "../../shared/entity/lesson-report-dto";
+import {AnswerDto} from "../../shared/entity/answer-dto";
 
 @Component({
 	selector: 'app-test-content',
@@ -13,8 +15,8 @@ import {LocalstorageKey} from '../../shared/utility/localstorage-key';
 	styleUrls: ['./test-content.component.css']
 })
 export class TestContentComponent implements OnInit {
-	@Input() questionCurrent: Question;
-	@Input() questionParent: Question;
+	@Input() questionCurrent: LessonReportDto;
+	@Input() questionParent: LessonReportDto;
 	@Input() order: number;
 	@Input() answers: AnswerUser[];
 	@Output() answersChange = new EventEmitter<AnswerUser[]>();
@@ -31,24 +33,24 @@ export class TestContentComponent implements OnInit {
 	}
 	
 	isChooseQuestion() {
-		return this.questionCurrent.type !== Common.Q_TYPE_ENTER;
+		return this.questionCurrent.questionType !== Common.Q_TYPE_ENTER;
 	}
 	
-	isAnswerUser(answer: Answer): boolean {
-		const answerUserCurrent = this.answers.find(w => w.questionCode === this.questionCurrent.question_code);
-		return answerUserCurrent.answer.includes(answer.answer_id);
+	isAnswerUser(answer: AnswerDto): boolean {
+		const answerUserCurrent = this.answers.find(w => w.questionCode === this.questionCurrent.lessionReportId.lessionReportQuestionCode);
+		return answerUserCurrent.answer.includes(answer.answerBankDto.answerCode);
 	}
 	
-	handleChooseAnswer(answer: Answer): void {
+	handleChooseAnswer(answer: AnswerDto): void {
 		const index = this.getIndexAnswerByQuestionCodeCurrent();
-		if (this.questionCurrent.type === Common.Q_TYPE_CHOOSE_ONE) {
+		if (this.questionCurrent.questionType === Common.Q_TYPE_CHOOSE_ONE) {
 			this.answers[index].answer = [];
-			this.answers[index].answer.push(answer.answer_id);
-		} else if (this.questionCurrent.type === Common.Q_TYPE_CHOOSE_MULTIPLE) {
-			if (!this.answers[index].answer.includes(answer.answer_id)) {
-				this.answers[index].answer.push(answer.answer_id);
+			this.answers[index].answer.push(answer.answerBankDto.answerCode);
+		} else if (this.questionCurrent.questionType === Common.Q_TYPE_CHOOSE_MULTIPLE) {
+			if (!this.answers[index].answer.includes(answer.answerBankDto.answerCode)) {
+				this.answers[index].answer.push(answer.answerBankDto.answerCode);
 			} else {
-				this.answers[index].answer = this.answers[index].answer.filter(w => w !== answer.answer_id);
+				this.answers[index].answer = this.answers[index].answer.filter(w => w !== answer.answerBankDto.answerCode);
 			}
 		}
 		this.answersChange.emit(this.answers);
@@ -56,12 +58,12 @@ export class TestContentComponent implements OnInit {
 	}
 	
 	getAnswerUser(): string {
-		return this.answers.find(w => w.questionCode === this.questionCurrent.question_code).answer;
+		return this.answers.find(w => w.questionCode === this.questionCurrent.lessionReportId.lessionReportQuestionCode).answer;
 	}
 	
 	handleEnterAnswer(e): void {
 		const index = this.getIndexAnswerByQuestionCodeCurrent();
-		if (this.questionCurrent.type !== Common.Q_TYPE_ENTER) {
+		if (this.questionCurrent.questionType !== Common.Q_TYPE_ENTER) {
 			this.logService.addLog('Enter answer with invalid question type');
 		}
 		this.answers[index].answer = e.target.value;
@@ -70,6 +72,6 @@ export class TestContentComponent implements OnInit {
 	}
 	
 	getIndexAnswerByQuestionCodeCurrent() {
-		return this.answers.findIndex(w => w.questionCode === this.questionCurrent.question_code);
+		return this.answers.findIndex(w => w.questionCode === this.questionCurrent.lessionReportId.lessionReportLessionCode);
 	}
 }

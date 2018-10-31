@@ -5,7 +5,7 @@ import {TestStartComponent} from './test-start/test-start.component';
 import {ExaminationComponent} from './examination/examination.component';
 import {TestCenterComponent} from './test-center/test-center.component';
 import {TestEndComponent} from './test-end/test-end.component';
-import {QuestionResolveService} from './question-resolve.service';
+import {LessonResolveService} from './lesson-resolve.service';
 import {TestResolveService} from "./test-resolve.service";
 
 const testCenterRoutes: Routes = [
@@ -14,7 +14,11 @@ const testCenterRoutes: Routes = [
 		children: [
 			{path: '', component: TestStartComponent, resolve: {categories: TestResolveService}},
 			{path: 'start', component: TestStartComponent},
-			{path: 'examination/:subCategoryCode', component: ExaminationComponent, resolve: {questions: QuestionResolveService}},
+			{
+				path: 'examination/:subCategoryCode',
+				component: ExaminationComponent,
+				resolve: {lesson: LessonResolveService}
+			},
 			{path: 'end', component: TestEndComponent}
 		]
 	},

@@ -1,7 +1,9 @@
 import {SystemResultId} from "./system-result-id";
+import {QuestionBank} from "./question-bank";
+import {AnswerBank} from "./answer-bank";
 
-export class SystemResultDto {
-	private  systemResultId: SystemResultId;
+export class SystemResult {
+	private systemResultId: SystemResultId;
 	private questionBank: QuestionBank;
 	private answerBank: AnswerBank;
 	private systemResultPosition: number;

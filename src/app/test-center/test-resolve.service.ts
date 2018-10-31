@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
-import {Category} from "../shared/entity/Category";
+import {Category} from "../shared/entity/category";
 import {Observable} from "rxjs";
 import {BaseResolveService} from "../layout/base-resolve-service";
 import {NotifierService} from "angular-notifier";
@@ -17,7 +17,6 @@ export class TestResolveService extends BaseResolveService<Result<Pager<Category
 		return this.categoryService.getCategories().then(result => {
 			return this.resolvePromise('/', result);
 		}).catch(reason => {
-			console.log(reason);
 			return this.rejectPromise('/');
 		});
 	}

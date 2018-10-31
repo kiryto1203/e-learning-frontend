@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BaseLayoutComponent} from "../../layout/base-layout-component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NotifierService} from "angular-notifier";
-import {Category} from "../../shared/entity/Category";
+import {Category} from "../../shared/entity/category";
 import {Pager} from "../../shared/entity/Pager";
 import {Result} from "../../shared/entity/result";
 import {NoticeType} from "../../shared/utility/NoticeType";
@@ -28,6 +28,7 @@ export class TestStartComponent extends BaseLayoutComponent{
 	
 	getCategories(): void {
 		this.route.data.subscribe((data: { categories: Result<Pager<Category>> }) => {
+			console.log(data);
 			this.categories = data.categories.data.results;
 		});
 	}
@@ -37,7 +38,7 @@ export class TestStartComponent extends BaseLayoutComponent{
 	}
 	
 	handleStartExamination(): void {
-		if(this.subCategory) this.notifier.notify(NoticeType.DANGER_ALERT,"You must choose subcategory for start examination!");
-		this.router.navigate([`/examination${this.subCategory}`]);
+		if(!this.subCategory) this.notifier.notify(NoticeType.DANGER_ALERT,"You must choose subcategory for start examination!");
+		else this.router.navigate([`/test-center/examination/${this.subCategory}`]);
 	}
 }

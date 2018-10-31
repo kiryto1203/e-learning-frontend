@@ -7,30 +7,26 @@ import {BaseResolveService} from "../layout/base-resolve-service";
 import {Result} from "../shared/entity/result";
 import {NotifierService} from "angular-notifier";
 import {CategoryService} from "../shared/service/category.service";
+import {LessonService} from "../shared/service/lesson.service";
+import {Lesson} from "../shared/entity/lesson";
+import {LessonDto} from "../shared/entity/lesson-dto";
 
 @Injectable({
 	providedIn: 'root'
 })
-export class QuestionResolveService extends BaseResolveService<Result<Question[]>> {
+export class LessonResolveService extends BaseResolveService<Result<LessonDto>> {
 	constructor(router: Router,
 	            notifier: NotifierService,
-	            private questionService: QuestionService) {
+	            private lessonService: LessonService) {
 		super(router, notifier);
 	}
 	
-	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Question[]> | Promise<Question[]> | Question[] | any {
-		let subCategoryCode = route.paramMap.get("subCategoryCode");
-		if(!subCategoryCode) this.router.navigate(["/test-center"]);
-		this.questionService.getQuestions().then(questions => {
-			if (questions) {
-				return of(questions);
-			} else {
-				this.router.navigate(['/']);
-				return EMPTY;
-			}
+	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+		Observable<Result<LessonDto>> | Promise<Result<LessonDto>> | Result<LessonDto> {
+		return this.lessonService.generateLesson(route.paramMap.get("subCategoryCode")).then(lesson => {
+			return this.resolvePromise('/test-center',lesson);
 		}).catch(result => {
-			this.router.navigate(['/']);
-			return EMPTY;
+			return this.rejectPromise('/test-center');
 		});
 	}
 	

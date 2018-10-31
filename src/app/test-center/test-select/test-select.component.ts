@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Question} from '../../shared/entity/questions';
 import {QuestionService} from '../../shared/service/question.service';
 import {AnswerUser} from '../../shared/entity/answer-user';
+import {LessonReportDto} from "../../shared/entity/lesson-report-dto";
 
 @Component({
 	selector: 'app-test-select',
@@ -39,13 +39,13 @@ import {AnswerUser} from '../../shared/entity/answer-user';
 export class TestSelectComponent implements OnInit {
 	@Input() questionCodes: any[];
 	@Input() order: number;
-	@Input() questions: Question[];
-	@Input() questionCurrent: Question;
-	@Input() questionParent: Question;
+	@Input() questions: LessonReportDto[];
+	@Input() questionCurrent: LessonReportDto;
+	@Input() questionParent: LessonReportDto;
 	@Input() answers: AnswerUser[];
-	@Output() questionCurrentChange = new EventEmitter<Question>();
+	@Output() questionCurrentChange = new EventEmitter<LessonReportDto>();
 	@Output() orderChange = new EventEmitter<number>();
-	@Output() questionParentChange = new EventEmitter<Question>();
+	@Output() questionParentChange = new EventEmitter<LessonReportDto>();
 	isShowOption: boolean;
 	changeProgress: string;
 	distance: number;
@@ -62,11 +62,11 @@ export class TestSelectComponent implements OnInit {
 	}
 	
 	handleSelect(questionCode): void {
-		this.questionCurrent = this.questions.find(w => w.question_code === questionCode);
+		this.questionCurrent = this.questions.find(w => w.lessionReportId.lessionReportQuestionCode === questionCode);
 		this.order = this.questionCodes.findIndex(w => w === questionCode) + 1;
 		this.questionCurrentChange.emit(this.questionCurrent);
 		this.orderChange.emit(this.order);
-		this.questionParentChange.emit(this.questionService.getQuestionFromQuestionCode(this.questionCurrent.parent, this.questions));
+		this.questionParentChange.emit(this.questionService.getQuestionFromQuestionCode(this.questionCurrent.questionParentCode, this.questions));
 		this.showOption();
 	}
 	
@@ -85,7 +85,8 @@ export class TestSelectComponent implements OnInit {
 	}
 	
 	isDone(questionCode: any) {
-		return this.answers.find(w => w.questionCode === questionCode).answer.length > 0;
+		return false;
+		// return this.answers.find(w => w.questionCode === questionCode).answer.length > 0;
 	}
 	
 	getNoOfQuestionComplete(answers: AnswerUser[]): number {

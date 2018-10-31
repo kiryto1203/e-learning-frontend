@@ -1,15 +1,15 @@
 <div class="content">
-	<p *ngIf="questionParent">{{questionParent.content}}</p>
+	<p *ngIf="questionParent">{{questionParent.questionContent}}</p>
 	<div class="question">
 		<h3>Question {{order}}: </h3>
-		<p>{{questionCurrent.content}}</p>
+		<p>{{questionCurrent.questionContent}}</p>
 	</div>
 	<div class="answer">
 		<div *ngIf="isChooseQuestion(); then chooseQuestion; else enterQuestion"></div>
 		<ng-template #chooseQuestion>
 			<p *ngFor="let answer of questionCurrent.answers; let i = index"
 			   class="{{ isAnswerUser(answer) ? 'choose' : '' }}" (click)="handleChooseAnswer(answer)">
-				{{getTitleForAnswerFromIndex(i)}}. {{ answer.content }}
+				{{getTitleForAnswerFromIndex(i)}}. {{ answer.answerBankDto.answerContent }}
 			</p>
 		</ng-template>
 		<ng-template #enterQuestion>

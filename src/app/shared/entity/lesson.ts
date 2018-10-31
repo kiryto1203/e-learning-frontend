@@ -1,6 +1,6 @@
 import {Question} from './questions';
 
 export class Lesson {
-	lessionId: number;
+	lessonId: number;
 	questions: Question[];
 }

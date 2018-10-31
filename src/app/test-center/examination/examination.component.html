@@ -2,7 +2,7 @@
 	<app-test-select [questionCodes]="questionCodes"
 					 [(order)]="order"
 					 [(questionCurrent)]="questionCurrent"
-					 [questions]="questions"
+					 [questions]="lesson.mappedLessionReports"
 					 [(answers)]="answers"
 					 [(questionParent)]="questionParent">
 	</app-test-select>
@@ -14,6 +14,6 @@
 	<app-test-navigate [questionCodes]="questionCodes"
 					   [(order)]="order"
 					   [(questionCurrent)]="questionCurrent"
-					   [questions]="questions"
+					   [questions]="lesson.mappedLessionReports"
 					   [(questionParent)]="questionParent"></app-test-navigate>
 </div>

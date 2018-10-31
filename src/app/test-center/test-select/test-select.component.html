@@ -1,7 +1,7 @@
 <div class="navigate">
 	<div class="selection">
 		<div class="select">
-			<p (click)="showOption()">Question {{order}} <img *ngIf="isDone(questionCurrent.question_code)" alt="icon"
+			<p (click)="showOption()">Question {{order}} <img *ngIf="isDone(questionCurrent.lessionReportId.lessionReportQuestionCode)" alt="icon"
 															  class="img-tick" src="../../../assets/img/tick.png"/></p>
 			<img src="../../../assets/img/arrow_select.png" class="img" alt="icon" (click)="showOption()"/>
 			<div class="option" [@openClose]="isShowOption ? 'open' : 'closed'">
