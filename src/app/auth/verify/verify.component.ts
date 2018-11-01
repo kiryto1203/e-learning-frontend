@@ -4,18 +4,19 @@ import {BaseLayoutComponent} from "../../layout/base-layout-component";
 import {Notice} from "../../shared/entity/notice";
 import {Common} from "../../shared/utility/common";
 import {VerificationDto} from "../../shared/entity/verification-dto";
-import {AuthService} from "../auth.service";
+import {AuthService} from "../../shared/service/auth.service";
 import {ResultCode} from "../../shared/utility/result-code";
 import {NoticeType} from "../../shared/utility/NoticeType";
 import {ERROR_CODE} from "../../shared/utility/error-code";
 import {CommonInfo} from "../../shared/data/common-info";
+import {NotifierService} from "angular-notifier";
 
 @Component({
 	selector: 'app-verify',
 	templateUrl: './verify.component.html',
 	styleUrls: ['./verify.component.css']
 })
-export class VerifyComponent implements BaseLayoutComponent {
+export class VerifyComponent extends BaseLayoutComponent {
 	verificationDto: VerificationDto;
 	isSubmit: boolean;
 	notice: Notice;
@@ -23,7 +24,9 @@ export class VerifyComponent implements BaseLayoutComponent {
 	
 	constructor(private route: ActivatedRoute,
 	            private authService: AuthService,
-	            private router: Router) {
+	            protected router: Router,
+	            protected notifier: NotifierService) {
+		super(router,notifier);
 		CommonInfo.PAGE_TITLE.title = "Verify account.";
 		CommonInfo.PAGE_TITLE.pageName = "Verify";
 		CommonInfo.PAGE_TITLE.isShow = true;

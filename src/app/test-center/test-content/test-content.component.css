@@ -5,10 +5,17 @@
     padding: 5px;
     text-align: left;
     min-height: 200px;
+    font-family: "Karla", sans-serif;
+    font-weight: 500;
+    color: #333;
+    font-size: 17px;
+    line-height: 30px;
+    letter-spacing: 1.2px;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
 }
-
-.content h3 {
-    margin-top: 10px;
+.content .question-parent {
     margin-bottom: 10px;
 }
 
@@ -16,6 +23,8 @@
     margin: 5px 0px;
     padding: 8px 10px;
     cursor: pointer;
+    font-size: 15px;
+    font-weight: 300;
 }
 
 .content .answer p.choose {

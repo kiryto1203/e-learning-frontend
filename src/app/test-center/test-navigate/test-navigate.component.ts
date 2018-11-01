@@ -1,8 +1,9 @@
 import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {Question} from '../../shared/entity/questions';
-import {QuestionService} from '../question.service';
+import {QuestionService} from '../../shared/service/question.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {LogService} from "../../log.service";
+import {LogService} from "../../shared/service/log.service";
+import {LessonReportDto} from "../../shared/entity/lesson-report-dto";
 
 @Component({
 	selector: 'app-test-navigate',
@@ -25,19 +26,18 @@ import {LogService} from "../../log.service";
 export class TestNavigateComponent implements OnInit {
 	@Input() questionCodes: any[];
 	@Input() order: number;
-	@Input() questions: Question[];
-	@Input() questionCurrent: Question;
-	@Input() questionParent: Question;
-	@Output() questionCurrentChange = new EventEmitter<Question>();
+	@Input() questions: LessonReportDto[];
+	@Input() questionCurrent: LessonReportDto;
+	@Input() questionParent: LessonReportDto;
+	@Output() questionCurrentChange = new EventEmitter<LessonReportDto>();
 	@Output() orderChange = new EventEmitter<number>();
-	@Output() questionParentChange = new EventEmitter<Question>();
+	@Output() questionParentChange = new EventEmitter<LessonReportDto>();
 	actionNavigate: string;
 	distance: number;
 	unit: number;
 	orderCurrent: number;
 	
-	constructor(private questionService: QuestionService,
-	            private logService: LogService) {
+	constructor(private questionService: QuestionService) {
 		this.unit = window.innerWidth <= 320 ? 50 : 80;
 		this.orderCurrent = 1;
 		this.actionNavigate = '';
@@ -66,9 +66,9 @@ export class TestNavigateComponent implements OnInit {
 	changeQuestionByOrder(order: number): void {
 		this.orderChange.emit(order);
 		const questionCode = this.questionCodes[this.order - 1];
-		this.questionCurrent = this.questions.find(v => v.question_code === questionCode);
+		this.questionCurrent = this.questions.find(v => v.lessonReportId.lessonReportQuestionCode === questionCode);
 		this.questionCurrentChange.emit(this.questionCurrent);
-		this.questionParent = this.questionService.getQuestionFromQuestionCode(this.questionCurrent.parent, this.questions);
+		this.questionParent = this.questionService.getQuestionFromQuestionCode(this.questionCurrent.questionParentCode, this.questions);
 		this.questionParentChange.emit(this.questionParent);
 	}
 	

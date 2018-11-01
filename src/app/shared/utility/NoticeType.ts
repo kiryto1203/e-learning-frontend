@@ -6,5 +6,5 @@ export enum NoticeType {
 	INFO_ALERT = "info",
 	SUCCESS_ALERT = "success",
 	WARNING_ALERT = "warning",
-	DANGER_ALERT = "danger"
+	DANGER_ALERT = "error"
 }

@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {LogService} from "../log.service";
-import {User} from "../shared/entity/user";
-import {Result} from "../shared/entity/result";
-import {Api} from "../shared/utility/api";
+import {LogService} from "./log.service";
+import {User} from "../entity/user";
+import {Result} from "../entity/result";
+import {Api} from "../utility/api";
 import {Observable} from "rxjs";
-import {VerificationDto} from "../shared/entity/verification-dto";
-import {LoginDto} from "../shared/entity/login-dto";
+import {VerificationDto} from "../entity/verification-dto";
+import {LoginDto} from "../entity/login-dto";
 
 @Injectable({
 	providedIn: 'root'

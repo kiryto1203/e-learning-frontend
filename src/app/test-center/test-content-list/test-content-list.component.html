@@ -1,0 +1,21 @@
+<div class="content">
+  <p *ngIf="rootParentQuestion" class="question-parent">{{rootParentQuestion.questionContent}}</p>
+  <!--<div class="question">-->
+    <!--<span><strong>Question {{order}}: </strong>{{questionCurrent.questionContent}}</span>-->
+  <!--</div>-->
+  <!--<div class="answer">-->
+    <!--<div *ngIf="isChooseQuestion(); then chooseQuestion; else enterQuestion"></div>-->
+    <!--<ng-template #chooseQuestion>-->
+      <!--<p *ngFor="let answer of questionCurrent.answers; let i = index"-->
+         <!--class="{{ isAnswerUser(answer) ? 'choose' : '' }}" (click)="handleChooseAnswer(answer)">-->
+        <!--{{getTitleForAnswerFromIndex(i)}}. {{ answer.answerBankDto.answerContent }}-->
+      <!--</p>-->
+    <!--</ng-template>-->
+    <!--<ng-template #enterQuestion>-->
+			<!--<textarea title="Enter your answer at here." placeholder="Enter your answer at here."-->
+                      <!--(input)="handleEnterAnswer($event)"-->
+                      <!--[value]="getAnswerUser()"-->
+            <!--&gt;</textarea>-->
+    <!--</ng-template>-->
+  <!--</div>-->
+</div>
