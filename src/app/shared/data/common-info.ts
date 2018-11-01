@@ -12,15 +12,20 @@ export class CommonInfo {
 		let localData: string = localStorage.getItem(LocalstorageKey.COMMON_INFO);
 		if(!localData) return;
 		let commonInfoJson: CommonInfoJSON = Object.assign(new CommonInfoJSON(),JSON.parse(localData));
-		if(this.isExpired(commonInfoJson.timeExpired)) return;
+		if(!this.isExpired(commonInfoJson.timeExpired)) return;
 		this.IS_LOGIN = commonInfoJson.isLogin;
 		this.TOKEN = commonInfoJson.token;
 		this.CURRENT_USER = commonInfoJson.currentUser;
 		this.TIME_EXPIRED = commonInfoJson.timeExpired;
-		console.log(this.IS_LOGIN, this.TOKEN);
+		console.log(commonInfoJson.category);
+		this.CATEGORY = commonInfoJson.category;
 	}
 	
 	static PAGE_TITLE: PageTitle = new PageTitle('Welcome to E-learning', 'Page', '/bg-parallax1.jpg');
+	static CATEGORY: { categoryCode: string, subCategoryName: string } = {
+		categoryCode: "",
+		subCategoryName: "",
+	};
 	static IS_LOGIN = false;
 	static TOKEN = "";
 	static CURRENT_USER: User = new User();
@@ -43,6 +48,15 @@ export class CommonInfoJSON {
 	private _token: string;
 	private _currentUser: User;
 	private _timeExpired: number;
+	private _category: { categoryCode: string, subCategoryName: string };
+	
+	get category(): { categoryCode: string; subCategoryName: string } {
+		return this._category;
+	}
+	
+	set category(value: { categoryCode: string; subCategoryName: string }) {
+		this._category = value;
+	}
 	
 	static saveDataToLocalStorage() {
 		let commonInfoJson = new CommonInfoJSON();
@@ -50,6 +64,7 @@ export class CommonInfoJSON {
 		commonInfoJson.isLogin = CommonInfo.IS_LOGIN;
 		commonInfoJson.timeExpired = CommonInfo.TIME_EXPIRED;
 		commonInfoJson.currentUser = CommonInfo.CURRENT_USER;
+		commonInfoJson.category = CommonInfo.CATEGORY;
 		localStorage.setItem(LocalstorageKey.COMMON_INFO,JSON.stringify(commonInfoJson));
 	}
 	

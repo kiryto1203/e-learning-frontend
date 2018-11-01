@@ -12,6 +12,8 @@ import {LessonReportDto} from "../../shared/entity/lesson-report-dto";
 import {BaseLayoutComponent} from "../../layout/base-layout-component";
 import {NotifierService} from "angular-notifier";
 import {AnswerDto} from "../../shared/entity/answer-dto";
+import {CommonInfo} from "../../shared/data/common-info";
+import {PageTitle} from "../../shared/entity/page-title";
 
 @Component({
 	selector: 'examination',
@@ -23,8 +25,10 @@ export class ExaminationComponent extends BaseLayoutComponent {
 	questionCurrent: LessonReportDto;
 	order: number;
 	questionParent: LessonReportDto;
-	answers: AnswerDto[];
+	answers: AnswerUser[];
 	questionCodes: any[];
+	allowEnd: boolean;
+	category: any;
 	
 	constructor(private questionService: QuestionService,
 	            private route: ActivatedRoute,
@@ -32,8 +36,12 @@ export class ExaminationComponent extends BaseLayoutComponent {
 	            protected router: Router,
 	            protected notifier: NotifierService) {
 		super(router,notifier);
+		CommonInfo.PAGE_TITLE.isShow = false;
 		this.lesson = new LessonDto();
 		this.order = 1;
+		this.allowEnd = false;
+		console.log(CommonInfo.CATEGORY);
+		this.category = CommonInfo.CATEGORY;
 	}
 	
 	ngOnInit() {
@@ -57,10 +65,8 @@ export class ExaminationComponent extends BaseLayoutComponent {
 		else {
 			const listAnswerUser = [];
 			this.lesson.mappedLessionReports.forEach(v => {
-				if (v.questionType !== Common.Q_TYPE_PARAGRAPH) {
-					listAnswerUser.push(new AnswerUser(v.lessionReportId.lessionReportQuestionCode,
-						v.questionType === Common.Q_TYPE_ENTER ? '' : []));
-				}
+				if (v.questionType !== Common.Q_TYPE_PARAGRAPH)
+					listAnswerUser.push(new AnswerUser(v.lessionReportId.lessionReportQuestionCode,[]));
 			});
 			localStorage.setItem(LocalstorageKey.ANSWERS, JSON.stringify(listAnswerUser));
 			return listAnswerUser;

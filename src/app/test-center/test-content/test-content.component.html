@@ -1,8 +1,7 @@
 <div class="content">
-	<p *ngIf="questionParent">{{questionParent.questionContent}}</p>
+	<p *ngIf="questionParent" class="question-parent">{{questionParent.questionContent}}</p>
 	<div class="question">
-		<h3>Question {{order}}: </h3>
-		<p>{{questionCurrent.questionContent}}</p>
+		<span><strong>Question {{order}}: </strong>{{questionCurrent.questionContent}}</span>
 	</div>
 	<div class="answer">
 		<div *ngIf="isChooseQuestion(); then chooseQuestion; else enterQuestion"></div>

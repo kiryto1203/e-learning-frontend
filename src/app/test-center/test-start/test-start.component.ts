@@ -6,6 +6,7 @@ import {Category} from "../../shared/entity/category";
 import {Pager} from "../../shared/entity/Pager";
 import {Result} from "../../shared/entity/result";
 import {NoticeType} from "../../shared/utility/NoticeType";
+import {CommonInfo, CommonInfoJSON} from "../../shared/data/common-info";
 
 @Component({
 	selector: 'app-test-start',
@@ -28,7 +29,6 @@ export class TestStartComponent extends BaseLayoutComponent{
 	
 	getCategories(): void {
 		this.route.data.subscribe((data: { categories: Result<Pager<Category>> }) => {
-			console.log(data);
 			this.categories = data.categories.data.results;
 		});
 	}
@@ -38,7 +38,14 @@ export class TestStartComponent extends BaseLayoutComponent{
 	}
 	
 	handleStartExamination(): void {
+		console.log(this.subCategory);
 		if(!this.subCategory) this.notifier.notify(NoticeType.DANGER_ALERT,"You must choose subcategory for start examination!");
-		else this.router.navigate([`/test-center/examination/${this.subCategory}`]);
+		else {
+			const subCate = this.subCategory.split("@");
+			CommonInfo.CATEGORY.categoryCode = this.categoryCode;
+			CommonInfo.CATEGORY.subCategoryName = subCate[1];
+			CommonInfoJSON.saveDataToLocalStorage();
+			this.router.navigate([`/test-center/examination/${subCate[0]}`]);
+		}
 	}
 }

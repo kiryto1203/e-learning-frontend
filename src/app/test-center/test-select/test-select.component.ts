@@ -92,9 +92,7 @@ export class TestSelectComponent implements OnInit {
 	getNoOfQuestionComplete(answers: AnswerUser[]): number {
 		let count = 0;
 		answers.forEach(w => {
-			if (w.answer.length > 0) {
-				count++;
-			}
+			if (w.answerDto.length > 0) count++;
 		});
 		return count;
 	}

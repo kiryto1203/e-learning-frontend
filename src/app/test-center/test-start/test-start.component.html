@@ -32,7 +32,7 @@
 										[(ngModel)]="subCategory">
 									<option value="" selected="selected">Choose categories</option>
 									<option *ngFor="let subCategoryName of getCategory().subcategoriesName; let i = index"
-											value="{{getCategory().subcategoriesCode[i]}}" >
+											value="{{getCategory().subcategoriesCode[i]}}@{{subCategoryName}}" >
 										{{subCategoryName}}
 									</option>
 								</select>
@@ -44,7 +44,7 @@
 							<!--</div>-->
 
 							<div class="wrap all-categories">
-								<button routerLink="/test-center/examination/{{subCategory}}">Start Examination</button>
+								<button (click)="handleStartExamination()">Start Examination</button>
 							</div>
 						</div><!-- /.wrap-type-input -->
 

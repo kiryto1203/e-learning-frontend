@@ -36,39 +36,40 @@ export class TestContentComponent implements OnInit {
 		return this.questionCurrent.questionType !== Common.Q_TYPE_ENTER;
 	}
 	
-	isAnswerUser(answer: AnswerDto): boolean {
-		const answerUserCurrent = this.answers.find(w => w.questionCode === this.questionCurrent.lessionReportId.lessionReportQuestionCode);
-		return answerUserCurrent.answer.includes(answer.answerBankDto.answerCode);
+	isAnswerUser(answer: AnswerDto[]): boolean {
+		return false;
+		// const answerUserCurrent = this.answers.find(w => w.systemResultDto.questionBank. === this.questionCurrent.lessionReportId.lessionReportQuestionCode);
+		// return answerUserCurrent.answer.includes(answer.answerBankDto.answerCode);
 	}
 	
 	handleChooseAnswer(answer: AnswerDto): void {
-		const index = this.getIndexAnswerByQuestionCodeCurrent();
-		if (this.questionCurrent.questionType === Common.Q_TYPE_CHOOSE_ONE) {
-			this.answers[index].answer = [];
-			this.answers[index].answer.push(answer.answerBankDto.answerCode);
-		} else if (this.questionCurrent.questionType === Common.Q_TYPE_CHOOSE_MULTIPLE) {
-			if (!this.answers[index].answer.includes(answer.answerBankDto.answerCode)) {
-				this.answers[index].answer.push(answer.answerBankDto.answerCode);
-			} else {
-				this.answers[index].answer = this.answers[index].answer.filter(w => w !== answer.answerBankDto.answerCode);
-			}
-		}
-		this.answersChange.emit(this.answers);
-		localStorage.setItem(LocalstorageKey.ANSWERS, JSON.stringify(this.answers));
+		// const index = this.getIndexAnswerByQuestionCodeCurrent();
+		// if (this.questionCurrent.questionType === Common.Q_TYPE_CHOOSE_ONE) {
+		// 	this.answers[index].answer = [];
+		// 	this.answers[index].answer.push(answer.answerBankDto.answerCode);
+		// } else if (this.questionCurrent.questionType === Common.Q_TYPE_CHOOSE_MULTIPLE) {
+		// 	if (!this.answers[index].answer.includes(answer.answerBankDto.answerCode)) {
+		// 		this.answers[index].answer.push(answer.answerBankDto.answerCode);
+		// 	} else {
+		// 		this.answers[index].answer = this.answers[index].answer.filter(w => w !== answer.answerBankDto.answerCode);
+		// 	}
+		// }
+		// this.answersChange.emit(this.answers);
+		// localStorage.setItem(LocalstorageKey.ANSWERS, JSON.stringify(this.answers));
 	}
 	
 	getAnswerUser(): string {
-		return this.answers.find(w => w.questionCode === this.questionCurrent.lessionReportId.lessionReportQuestionCode).answer;
+		return ""; //this.answers.find(w => w.questionCode === this.questionCurrent.lessionReportId.lessionReportQuestionCode).answer;
 	}
 	
 	handleEnterAnswer(e): void {
-		const index = this.getIndexAnswerByQuestionCodeCurrent();
-		if (this.questionCurrent.questionType !== Common.Q_TYPE_ENTER) {
-			this.logService.addLog('Enter answer with invalid question type');
-		}
-		this.answers[index].answer = e.target.value;
-		this.answersChange.emit(this.answers);
-		localStorage.setItem(LocalstorageKey.ANSWERS, JSON.stringify(this.answers));
+		// const index = this.getIndexAnswerByQuestionCodeCurrent();
+		// if (this.questionCurrent.questionType !== Common.Q_TYPE_ENTER) {
+		// 	this.logService.addLog('Enter answer with invalid question type');
+		// }
+		// this.answers[index].answer = e.target.value;
+		// this.answersChange.emit(this.answers);
+		// localStorage.setItem(LocalstorageKey.ANSWERS, JSON.stringify(this.answers));
 	}
 	
 	getIndexAnswerByQuestionCodeCurrent() {
