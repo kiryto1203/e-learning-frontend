@@ -7,7 +7,7 @@ export const ERROR_CODE = {
 	"006": "EMAIL EXISTS",
 	"007": "EMAIL SAME WITH OTHER USERS",
 	"008": "CATEGORY NOT FOUND",
-	"009": "SUBCATEGORY NOT FOUND",
+	"009": "Not found examination with your choose subcategory",
 	"010": "ANSWER EXIST",
 	"011": "ANSWER NOT EXIST",
 	"050": "USERNAME AND PASSWORD IS NOT EMPTY",
@@ -48,3 +48,5 @@ export const ERROR_CODE = {
 	"108": "CANNOT CONVERT JSON TO LIST",
 	"104": "ANSWER TOO LESS",
 };
+
+export const ERROR_COE_TOKEN = ['052','051'];

@@ -8,13 +8,14 @@ import {TestStartComponent} from './test-start/test-start.component';
 import {TestCenterRoutingModule} from './test-center-routing.module';
 import {TestEndComponent} from './test-end/test-end.component';
 import {TestCenterComponent} from './test-center/test-center.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
 	imports: [
 		CommonModule,
 		TestCenterRoutingModule,
-		FormsModule
+		FormsModule,
+		ReactiveFormsModule
 	],
 	declarations: [
 		ExaminationComponent,

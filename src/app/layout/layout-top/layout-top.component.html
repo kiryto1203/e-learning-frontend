@@ -19,10 +19,15 @@
 			</div><!-- /.col-md-6 -->
 			<div class="col-md-6">
 				<div class="top-navigator">
-					<ul>
+					<ul *ngIf="!isLogin(); else login">
 						<li><a routerLink="/register">Register</a></li>
 						<li><a routerLink="/login">Login</a></li>
 					</ul>
+					<ng-template #login>
+						<ul>
+							<li><a routerLink="/">{{currentUser.username}}</a></li>
+						</ul>
+					</ng-template>
 				</div><!-- /.top-navigator -->
 			</div><!-- /.col-md-6 -->
 		</div><!-- /.row -->

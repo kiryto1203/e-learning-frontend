@@ -1,9 +1,11 @@
+import {AnswerDto} from "./answer-dto";
+
 export class AnswerUser {
 	questionCode: string;
-	answer: any;
+	answerDto: AnswerDto[];
 	
-	constructor(questionCode: string, answer: any) {
+	constructor(questionCode: string, answerDto: AnswerDto[]) {
 		this.questionCode = questionCode;
-		this.answer = answer;
+		this.answerDto = answerDto;
 	}
 }

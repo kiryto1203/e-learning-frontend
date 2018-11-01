@@ -1,29 +1,47 @@
 import {Component, OnInit} from '@angular/core';
 import {Question} from '../../shared/entity/questions';
-import {QuestionService} from '../question.service';
+import {QuestionService} from '../../shared/service/question.service';
 import {LocalstorageKey} from '../../shared/utility/localstorage-key';
 import {AnswerUser} from '../../shared/entity/answer-user';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Common} from "../../shared/utility/common";
-import {LogService} from "../../log.service";
+import {LogService} from "../../shared/service/log.service";
+import {LessonDto} from "../../shared/entity/lesson-dto";
+import {Result} from "../../shared/entity/result";
+import {LessonReportDto} from "../../shared/entity/lesson-report-dto";
+import {BaseLayoutComponent} from "../../layout/base-layout-component";
+import {NotifierService} from "angular-notifier";
+import {AnswerDto} from "../../shared/entity/answer-dto";
+import {CommonInfo} from "../../shared/data/common-info";
+import {PageTitle} from "../../shared/entity/page-title";
 
 @Component({
 	selector: 'examination',
 	templateUrl: './examination.component.html',
 	styleUrls: ['./examination.component.css']
 })
-export class ExaminationComponent implements OnInit {
-	questions: Question[];
-	questionCurrent: Question;
+export class ExaminationComponent extends BaseLayoutComponent {
+	lesson: LessonDto;
+	questionCurrent: LessonReportDto;
 	order: number;
-	questionParent: Question;
+	questionParent: LessonReportDto;
 	answers: AnswerUser[];
 	questionCodes: any[];
+	allowEnd: boolean;
+	category: any;
 	
 	constructor(private questionService: QuestionService,
 	            private route: ActivatedRoute,
-	            private logService: LogService) {
+	            private logService: LogService,
+	            protected router: Router,
+	            protected notifier: NotifierService) {
+		super(router,notifier);
+		CommonInfo.PAGE_TITLE.isShow = false;
+		this.lesson = new LessonDto();
 		this.order = 1;
+		this.allowEnd = false;
+		console.log(CommonInfo.CATEGORY);
+		this.category = CommonInfo.CATEGORY;
 	}
 	
 	ngOnInit() {
@@ -31,25 +49,24 @@ export class ExaminationComponent implements OnInit {
 	}
 	
 	getQuestion(): void {
-		this.route.data.subscribe((data: { questions: Question[] }) => {
-			this.questions = data.questions;
+		this.route.data.subscribe((data) => {
+			this.lesson = data.lesson.data;
 			this.answers = this.getAnswer();
-			this.questionCurrent = this.questions[0];
-			this.questionCodes = this.questionService.getQuestionCodesFromQuestions(this.questions);
-			this.questionParent = this.questionService.getQuestionFromQuestionCode(this.questionCurrent.parent, this.questions);
+			this.questionCurrent = this.lesson.mappedLessionReports[0];
+			this.questionCodes = this.questionService.getQuestionCodesFromQuestions(this.lesson.mappedLessionReports);
+			this.questionParent = this.questionService.getQuestionFromQuestionCode(this.questionCurrent.questionParentCode,
+				this.lesson.mappedLessionReports);
 		});
 	}
 	
 	getAnswer(): AnswerUser[] {
 		const answersLocal = localStorage.getItem(LocalstorageKey.ANSWERS);
-		if (answersLocal) {
-			return JSON.parse(answersLocal);
-		} else {
+		if (answersLocal) return JSON.parse(answersLocal);
+		else {
 			const listAnswerUser = [];
-			this.questions.forEach(v => {
-				if (v.type !== Common.Q_TYPE_PARAGRAPH) {
-					listAnswerUser.push(new AnswerUser(v.question_code, v.type === Common.Q_TYPE_ENTER ? '' : []));
-				}
+			this.lesson.mappedLessionReports.forEach(v => {
+				if (v.questionType !== Common.Q_TYPE_PARAGRAPH)
+					listAnswerUser.push(new AnswerUser(v.lessionReportId.lessionReportQuestionCode,[]));
 			});
 			localStorage.setItem(LocalstorageKey.ANSWERS, JSON.stringify(listAnswerUser));
 			return listAnswerUser;

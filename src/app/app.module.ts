@@ -33,7 +33,6 @@ import {NotifierModule} from "angular-notifier";
 		AppRoutingModule,
 		HttpClientModule,
 		LayoutModule,
-	
 	],
 	providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
 	bootstrap: [AppComponent]

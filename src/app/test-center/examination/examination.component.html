@@ -1,8 +1,42 @@
-<div>
+<section class="flat-row parallax parallax3">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title-section cl-white">
+					<h1 class="title">Examination</h1>
+				</div><!-- /.title-section -->
+				<!-- Fillter courses -->
+				<form class="flat-contact-form fillter-courses border-radius border-white text-center" #testForm="ngForm">
+					<div class="field clearfix">
+						<div class="wrap-type-input" style="display: inline-flex">
+							<div class="wrap categories-courses">
+								<select class="select-field" name="appointment_services" title="Choose categories" disabled>
+									<option value="" selected="selected">{{category.categoryCode}}</option>
+								</select>
+							</div><!-- /.wrap-select -->
+							<div class="wrap courses-level">
+								<select class="select-field" name="appointment_services" title="Choose level" disabled>
+									<option value="" selected="selected">{{category.subCategoryName}}</option>
+								</select>
+							</div><!-- /.wrap-select -->
+							<div class="wrap all-categories">
+								<button [disabled]="!allowEnd">End Examination</button>
+							</div>
+						</div><!-- /.wrap-type-input -->
+
+					</div><!-- /.field -->
+				</form><!-- /.comment-form -->
+			</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</section>
+
+<div class="container">
 	<app-test-select [questionCodes]="questionCodes"
 					 [(order)]="order"
 					 [(questionCurrent)]="questionCurrent"
-					 [questions]="questions"
+					 [questions]="lesson.mappedLessionReports"
 					 [(answers)]="answers"
 					 [(questionParent)]="questionParent">
 	</app-test-select>
@@ -14,6 +48,6 @@
 	<app-test-navigate [questionCodes]="questionCodes"
 					   [(order)]="order"
 					   [(questionCurrent)]="questionCurrent"
-					   [questions]="questions"
+					   [questions]="lesson.mappedLessionReports"
 					   [(questionParent)]="questionParent"></app-test-navigate>
 </div>
